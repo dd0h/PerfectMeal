@@ -1,0 +1,129 @@
+body{
+    margin: 0;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    background: transparent linear-gradient(180deg, #F29898 0%, #FFE4E4 100%, #F29898 100%) 0% 0% no-repeat padding-box;
+}
+
+.bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo{
+    width: 80%;
+    height: 20%;
+    margin-left: 5%;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+img[name=logo]{
+    width: 50%;
+    height: 50%;
+}
+.sign-up{
+    width: 20%;
+    margin-right: 5%;
+
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.sign-up > .button{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    opacity: 1;
+    width: 50%;
+}
+.sign-up > .button > p{
+    text-align: center;
+    font: normal normal normal 3vh/2vw Montserrat;
+    letter-spacing: 0px;
+    color: #F29898;
+    opacity: 1;
+}
+
+.content{
+    margin: 5%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container{
+    background: rgba(255, 255, 255, 0.75) 0% 0% no-repeat padding-box;
+    border: 10px solid rgba(255, 255, 255, 0.75);
+    width: 30%;
+    height: 45vh;
+    border-radius: 4px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Sign-in-text{
+    text-align: center;
+    font: normal normal normal 2.5em Montserrat;
+    color: #BD7676;
+    margin-bottom: 2vh;
+}
+
+.Sign-in-form{
+    background: rgba(242,152,152, 0.5) 0% 0% no-repeat padding-box;
+    border: 1px solid rgba(112, 112, 112, 0.5);
+
+    width: 80%;
+    height: 30vh;
+    margin-bottom: 3vh;
+
+    display: flex;
+    justify-content: center;
+}
+
+.Sign-in-form > form{
+    font: normal normal normal 1em Montserrat;
+    color: #FFFFFF;
+    width: 100%;
+}
+
+.Sign-in-form > form > input{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #BD7676;
+    width: 70%;
+
+    margin: 1vh;
+    line-height: 2.5em;
+    padding: 0 0.5em 0 0.5em;
+}
+.Sign-in-form > form > button {
+    background: rgba(189, 118, 118, 1) 0% 0% no-repeat padding-box;
+    border: 3px solid rgba(189, 118, 118, 1);
+
+    text-align: center;
+    font: normal normal normal 1.5em Montserrat;
+    color: white;
+
+    border-radius: 4px;
+    margin-bottom: 1vh;
+    line-height: 2em;
+    width: 50%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

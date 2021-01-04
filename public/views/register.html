@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/register_styles.css">
     <title>Sign up</title>
 </head>
 <body>
-    <div class="container">
+<div class="container">
+    <div class="bar">
         <div class="logo">
-            <img src="../img/logo.svg">
+            <img name="logo" src="../img/logo.svg">
         </div>
-        <div class="register-container">
-            <form>
-                <input name="email" type="text" placeholder="email@email.com">
-                <input name="password" type="password" placeholder="password">
-                <input name="repeat_password" type="password" placeholder="password">
-                <button>Register</button>
-            </form>
+        <div class="sign-in">
+            <div class="button"><p>Sign in</p></div>
         </div>
     </div>
+    <div class="content">
+        <div class="register-container">
+            <div class="Sign-up-text">Sign up</div>
+            <div class="Sign-up-form">
+                <form>
+                    email
+                    <input name="email" type="text">
+                    password
+                    <input name="password" type="password">
+                    repeat password
+                    <input name="repeat_password" type="password">
+                    <div class="accept_rules">
+                        <input id="accept_box" type="checkbox">
+                        <span class="checkmark"></span>
+                        <label for="accept_box">I have read and accept PerfectMeal site rules</label>
+                    </div>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
