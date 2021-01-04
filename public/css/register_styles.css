@@ -4,7 +4,7 @@ body{
 
 .container{
     width: 100vw;
-    height: 100vh;
+    height: 120vh;
     background: transparent linear-gradient(180deg, #F29898 0%, #FFE4E4 100%, #F29898 100%) 0% 0% no-repeat padding-box;
 }
 
@@ -139,9 +139,38 @@ form{
 
 }
 
+a{
+    color: #FFFFFF;
+    text-decoration: none;
+}
 
 label{
     font: normal normal normal 0.6em Montserrat;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 20vh;
+    margin-bottom: -10vh;
+}
+
+.footer > .links{
+
+}
+
+.footer a{
+    margin: 0 1vh 1vh 1vh;
+}
+
+.footer > .copyright{
+    text-align: center;
+    font: normal normal normal 1em Montserrat;
+    color: #FFFFFF;
+    border-top: 0.1em solid #FFFFFF;
 }
 
 
