@@ -4,7 +4,7 @@ body{
 
 .container{
     width: 100vw;
-    height: 100vh;
+    padding-bottom: 2vh;
     background: transparent linear-gradient(180deg, #F29898 0%, #FFE4E4 100%, #F29898 100%) 0% 0% no-repeat padding-box;
 }
 
