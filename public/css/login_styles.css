@@ -64,7 +64,6 @@ img[name=logo]{
     background: rgba(255, 255, 255, 0.75) 0% 0% no-repeat padding-box;
     border: 10px solid rgba(255, 255, 255, 0.75);
     width: 30%;
-    height: 45vh;
     border-radius: 4px;
 
     display: flex;
@@ -85,8 +84,8 @@ img[name=logo]{
     border: 1px solid rgba(112, 112, 112, 0.5);
 
     width: 80%;
-    height: 30vh;
     margin-bottom: 3vh;
+    padding: 2vh 0 1vh 0;
 
     display: flex;
     justify-content: center;
@@ -119,6 +118,12 @@ img[name=logo]{
     margin-bottom: 1vh;
     line-height: 2em;
     width: 50%;
+}
+
+.messages{
+    font: normal normal normal 2vh Montserrat;
+    color: red;
+    height: 2vh;
 }
 
 form{

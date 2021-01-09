@@ -18,12 +18,21 @@
             <div class="login-container">
                 <div class="Sign-in-text">Sign in</div>
                 <div class="Sign-in-form">
-                    <form>
+                    <form action="login" method="POST">
                         email
                         <input name="email" type="text">
                         password
                         <input name="password" type="password">
                         <button type="submit">Login</button>
+                        <div class="messages">
+                            <?php
+                            if(isset($messages)){
+                                foreach($messages as $message) {
+                                    echo $message;
+                                }
+                            }
+                            ?>
+                        </div>
                     </form>
                 </div>
             </div>

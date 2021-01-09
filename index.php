@@ -12,4 +12,6 @@ Router::get('view_recipe', 'DefaultController');
 Router::get('add_recipe', 'DefaultController');
 Router::get('search_recipe', 'DefaultController');
 
+Router::post('login', 'SecurityController');
+
 Router::run($path);

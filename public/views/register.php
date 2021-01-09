@@ -19,6 +19,8 @@
             <div class="Sign-up-text">Sign up</div>
             <div class="Sign-up-form">
                 <form>
+                    username
+                    <input name="username" type="text">
                     email
                     <input name="email" type="text">
                     password
