@@ -1,0 +1,177 @@
+body{
+    margin: 0;
+}
+
+.container{
+    width: 100vw;
+    padding-bottom: 2vh;
+    background: transparent linear-gradient(180deg, #F29898 0%, #FFE4E4 100%, #F29898 100%) 0% 0% no-repeat padding-box;
+}
+
+.bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo{
+    width: 80%;
+    height: 20%;
+    margin-left: 5%;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+img[name=logo]{
+    width: 50%;
+    height: 50%;
+}
+.logged{
+    width: 20%;
+    margin-right: 5%;
+
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.logged p{
+    width: 50%;
+    text-align: center;
+    font: normal normal normal 1em Montserrat;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+.content{
+    margin: 5%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.recipe-container{
+    background: rgba(255, 255, 255, 0.75) 0% 0% no-repeat padding-box;
+    border: 10px solid rgba(255, 255, 255, 0.75);
+    width: 70%;
+    /*height: 100vh;*/
+    border-radius: 4px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /*f!!!!!!!!!!!!!!!!!!!!!!!!!!1*/
+}
+
+.meal-name{
+    text-align: center;
+    font: normal normal normal 2.5em Montserrat;
+    background: rgba(242,152,152, 0.2) 0% 0% no-repeat padding-box;
+    border-radius: 6px;
+    width: 100%;
+    color: #BD7676;
+    margin: 1vh 1vw 3vh 1vw;
+}
+.recipe-container > img{
+    width: 20vw;
+    margin: 1vh 1vw 1vh 1vw;
+    background: rgba(242,152,152, 0.8) 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    color: #FFFFFF;
+    padding: 1vh 0.5vw 1vh 0.5vw;
+}
+.detail-container{
+    background: rgba(242,152,152, 0.4) 0% 0% no-repeat padding-box;
+    border-radius: 6px;
+
+    width: 100%;
+    margin: 3vh 2vw 3vh 2vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.detail-container p{
+    font: normal normal normal 1.5em Montserrat;
+    margin: 1vh 0 1vh 0;
+    border-bottom: 0.1em solid #FFFFFF;
+    padding-bottom: 1vh;
+}
+
+.ingredients, .tags, .recipe, .directions, .author{
+    text-align: center;
+    font: normal normal normal 1em Montserrat;
+    background: rgba(242,152,152, 0.6) 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    color: #FFFFFF;
+    margin: 3vh 1vw 3vh 1vw;
+    padding: 3vh 2vw 3vh 2vw;;
+}
+
+.tags-container, .ingredients-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 30px;
+    border-color: #FFFFFF;
+}
+
+.tag{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #BD7676;
+    border-radius: 6px;
+
+    text-align: center;
+    font: normal normal normal 0.8vw Montserrat;
+    color: #F29898;
+
+    padding: 1vh 0.5vw 1vh 0.5vw;
+    margin: 0.5vh 0.2vw 0.5vh 0.5vw;
+    /*flex-basis: 100%;*/
+}
+
+.recipe{
+
+}
+
+.directions{
+
+}
+
+a{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 15vh;
+}
+
+.footer > .links{
+
+}
+
+.footer a{
+    margin: 0 1vh 1vh 1vh;
+}
+
+.footer > .copyright{
+    text-align: center;
+    font: normal normal normal 1em Montserrat;
+    color: #FFFFFF;
+    border-top: 0.1em solid #FFFFFF;
+}
