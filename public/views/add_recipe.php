@@ -18,7 +18,7 @@
             <div class="add-recipe-container">
                 <div class="add-recipe-text">Add recipe</div>
 
-                    <form>
+                    <form action="addRecipe" method="POST" enctype="multipart/form-data">
                         <div class="input-container">
                             Title
                             <input name="title"/>
@@ -41,8 +41,17 @@
                         </div>
                         <div class="input-container">
                             Add photo
-                            <input id="photo" type="file"/>
+                            <input name="file" id="photo" type="file"/>
                             <label for="photo">Choose file</label>
+                            <div class="messages">
+                                <?php
+                                if(isset($messages)){
+                                    foreach($messages as $message) {
+                                        echo $message;
+                                    }
+                                }
+                                ?>
+                            </div>
                         </div>
                         <div class="buttons">
                             <button name="clear" type="submit">Clear</button>

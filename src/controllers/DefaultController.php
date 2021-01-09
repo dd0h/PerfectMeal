@@ -19,17 +19,17 @@ class DefaultController extends AppController {
         $this->render('register');
     }
 
-    public function view_recipe()
+    public function viewRecipe()
     {
         $this->render('view_recipe');
     }
 
-    public function add_recipe()
+    public function addRecipe()
     {
         $this->render('add_recipe');
     }
 
-    public function search_recipe()
+    public function searchRecipe()
     {
         $this->render('search_recipe');
     }
