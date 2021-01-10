@@ -24,16 +24,16 @@
                             <input name="title"/>
                         </div>
                         <div class="input-container">
-                            Ingredients
-                            <textarea name="ingredients"></textarea>
-                        </div>
-                        <div class="input-container">
                             Tags (cuisine, diet type, meal type)
                             <textarea name="tags"></textarea>
                         </div>
                         <div class="input-container">
-                            Recipe
-                            <textarea name="recipe"></textarea>
+                            Ingredients
+                            <textarea name="ingredients"></textarea>
+                        </div>
+                        <div class="input-container">
+                            Ingredients proportions
+                            <textarea name="proportions"></textarea>
                         </div>
                         <div class="input-container">
                             Directions

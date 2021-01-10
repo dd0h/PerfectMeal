@@ -2,6 +2,7 @@
 
 require_once 'AppController.php';
 require_once __DIR__ .'/../models/Recipe.php';
+require_once __DIR__.'/../repository/RecipeRepository.php';
 
 class RecipeController extends AppController {
 
@@ -10,6 +11,13 @@ class RecipeController extends AppController {
     const UPLOAD_DIRECTORY = '/../public/uploads/';
 
     private $message = [];
+    private $recipeRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->recipeRepository = new RecipeRepository();
+    }
 
     public function addRecipe()
     {
@@ -21,13 +29,15 @@ class RecipeController extends AppController {
 
             // TODO create new project object and save it in database
             $recipe = new Recipe($_POST['title'],
-                $_POST['ingredients'],
                 $_POST['tags'],
-                $_POST['recipe'],
+                $_POST['ingredients'],
+                $_POST['proportions'],
                 $_POST['directions'],
                 $_FILES['file']['name'],
+                "Date unknown!",
                 "Author unknown!"); // TODO
 
+            $this->recipeRepository->addRecipe($recipe);
             return $this->render('search_recipe', ['messages' => $this->message]);
         }
         else{

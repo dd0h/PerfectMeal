@@ -4,22 +4,26 @@
 class Recipe
 {
     private $title;
-    private $ingredients;
     private $tags;
-    private $recipe;
+    private $ingredients;
+    private $proportions;
     private $directions;
     private $image;
-    private $author;
+    private $created_at;
+    private $user_id;
 
-    public function __construct($title, $ingredients, $tags, $recipe, $directions, $image, $author)
+    public function __construct(
+        $title, $tags, $ingredients, $proportions, $directions, $image, $created_at, $user_id
+    )
     {
         $this->title = $title;
         $this->ingredients = $ingredients;
         $this->tags = $tags;
-        $this->recipe = $recipe;
+        $this->proportions = $proportions;
         $this->directions = $directions;
         $this->image = $image;
-        $this->author = $author;
+        $this->created_at = $created_at;
+        $this->user_id = $user_id;
     }
 
     public function getTitle()
@@ -32,16 +36,6 @@ class Recipe
         $this->title = $title;
     }
 
-    public function getIngredients()
-    {
-        return $this->ingredients;
-    }
-
-    public function setIngredients($ingredients)
-    {
-        $this->ingredients = $ingredients;
-    }
-
     public function getTags()
     {
         return $this->tags;
@@ -52,14 +46,24 @@ class Recipe
         $this->tags = $tags;
     }
 
-    public function getRecipe()
+    public function getIngredients()
     {
-        return $this->recipe;
+        return $this->ingredients;
     }
 
-    public function setRecipe($recipe)
+    public function setIngredients($ingredients)
     {
-        $this->recipe = $recipe;
+        $this->ingredients = $ingredients;
+    }
+
+    public function getProportions()
+    {
+        return $this->proportions;
+    }
+
+    public function setProportions($proportions)
+    {
+        $this->proportions = $proportions;
     }
 
     public function getDirections()
@@ -82,14 +86,25 @@ class Recipe
         $this->image = $image;
     }
 
-    public function getAuthor()
+    public function getCreatedAt()
     {
-        return $this->author;
+        return $this->created_at;
     }
 
-    public function setAuthor($author)
+    public function setCreatedAt($created_at)
     {
-        $this->author = $author;
+        $this->created_at = $created_at;
+    }
+
+
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId($user_id)
+    {
+        $this->user_id = $user_id;
     }
 
 
