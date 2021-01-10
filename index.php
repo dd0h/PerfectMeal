@@ -13,7 +13,10 @@ Router::get('addRecipe', 'DefaultController');
 Router::get('searchRecipe', 'DefaultController');
 
 Router::post('login', 'SecurityController');
+Router::post('logout', 'SecurityController');
 Router::post('register', 'SecurityController');
 Router::post('addRecipe', 'RecipeController');
+
+AuthenticationGuard::protect(["addRecipe"]);
 
 Router::run($path);

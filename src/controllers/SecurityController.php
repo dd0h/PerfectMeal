@@ -32,8 +32,16 @@ class SecurityController extends AppController {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
+        AuthenticationGuard::authenticateUser($user);
+
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/addRecipe");
+    }
+
+    public function logout(){
+        AuthenticationGuard::revokeAccess();
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/login");
     }
 
     public function register()

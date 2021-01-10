@@ -11,7 +11,9 @@
                 <img name="logo" src="public/img/logo.svg">
             </div>
             <div class="logged">
-                <p>Logged as: MarasKoks</p>
+                <form action="logout" method="POST">
+                    <button type="submit"><p>Logout</p></button>
+                </form>
             </div>
         </div>
         <div class="content">
