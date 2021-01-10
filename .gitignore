@@ -8,6 +8,7 @@
 
 .idea
 public/uploads
+config.php
 
 # User-specific stuff
 .idea/**/workspace.xml

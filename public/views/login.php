@@ -19,8 +19,8 @@
                 <div class="Sign-in-text">Sign in</div>
                 <div class="Sign-in-form">
                     <form action="login" method="POST">
-                        email
-                        <input name="email" type="text">
+                        username or email
+                        <input name="login" type="text">
                         password
                         <input name="password" type="password">
                         <button type="submit">Login</button>
