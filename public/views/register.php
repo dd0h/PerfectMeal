@@ -18,7 +18,7 @@
         <div class="register-container">
             <div class="Sign-up-text">Sign up</div>
             <div class="Sign-up-form">
-                <form>
+                <form action="register" method="POST">
                     username
                     <input name="username" type="text">
                     email
@@ -33,6 +33,15 @@
                         <label for="accept_box">I have read and accept PerfectMeal site rules</label>
                     </div>
                     <button type="submit">Register</button>
+                    <div class="messages">
+                        <?php
+                        if(isset($messages)){
+                            foreach($messages as $message) {
+                                echo $message;
+                            }
+                        }
+                        ?>
+                    </div>
                 </form>
             </div>
         </div>
