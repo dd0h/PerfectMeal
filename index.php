@@ -1,21 +1,24 @@
 <?php
 
-require 'Routing.php';
+require __DIR__ .'/src/routing/Routing.php';
 
 $path = trim($_SERVER['REQUEST_URI'], '/');
 $path = parse_url( $path, PHP_URL_PATH);
 
-Router::get('', 'DefaultController');
-Router::get('login', 'DefaultController');
-Router::get('register', 'DefaultController');
-Router::get('viewRecipe', 'DefaultController');
-Router::get('addRecipe', 'DefaultController');
-Router::get('searchRecipe', 'DefaultController');
+Router::init(new RouteCollection());
 
-Router::post('login', 'SecurityController');
-Router::post('logout', 'SecurityController');
-Router::post('register', 'SecurityController');
-Router::post('addRecipe', 'RecipeController');
+Router::route('', 'DefaultController', '', 'GET');
+Router::route('login', 'DefaultController', 'login', 'GET');
+Router::route('register', 'DefaultController', 'register', 'GET');
+Router::route('viewRecipe', 'DefaultController', 'viewRecipe', 'GET');
+Router::route('addRecipe', 'DefaultController', 'addRecipe', 'GET');
+Router::route('searchRecipe', 'DefaultController', 'searchRecipe', 'GET');
+
+Router::route('login', 'SecurityController', 'login', 'POST');
+Router::route('logout', 'SecurityController', 'logout', 'POST');
+Router::route('register', 'SecurityController', 'register', 'POST');
+Router::route('addRecipe', 'RecipeController', 'addRecipe', 'POST');
+
 
 AuthenticationGuard::protect(["addRecipe"]);
 

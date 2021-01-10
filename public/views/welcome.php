@@ -19,7 +19,7 @@
             </div>
 
             <div class="mainpage-link">
-                <a href="#">Search for a recipe!</a>
+                <a href="searchRecipe">Search for a recipe!</a>
             </div>
         </div>
 
