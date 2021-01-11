@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/search_recipe_styles.css">
+    <link rel="stylesheet" type="text/css" href="public/css/footer_styles.css">
+    <link rel="stylesheet" type="text/css" href="public/css/upper_bar_styles.css">
     <script src="https://kit.fontawesome.com/46e60e2318.js" crossorigin="anonymous"></script>
     <title>Search for a recipe!</title>
 </head>
 <body>
     <div class="container">
-        <div class="bar">
-            <div class="logo">
-                <img name="logo" src="public/img/logo.svg">
-            </div>
-            <div class="logged">
-                <p>Logged as: MarasKoks</p>
-            </div>
-        </div>
+        <?php include('common_view_parts/upper_bar.php') ?>
         <div class="content">
 
             <div class="ingredients-container">
@@ -106,13 +101,6 @@
             </div>
 
         </div>
-        <div class="footer">
-            <div class="links">
-                <a class="fab fa-facebook-square fa-2x" href="#"></a>
-                <a class="fab fa-twitter-square fa-2x" href="#"></a>
-                <a class="fab fa-instagram fa-2x" href="#"></a>
-            </div>
-            <div class="copyright">© 2020 github.com/dd0h/ All Rights Reserved</div>
-        </div>
+        <?php include('common_view_parts/footer.php') ?>
     </div>
 </body>

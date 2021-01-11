@@ -4,51 +4,8 @@ body{
 
 .container{
     width: 100vw;
-    padding-bottom: 2vh;
+    min-height: 100vh;
     background: transparent linear-gradient(180deg, #F29898 0%, #FFE4E4 100%, #F29898 100%) 0% 0% no-repeat padding-box;
-}
-
-.bar{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo{
-    width: 80%;
-    height: 20%;
-    margin-left: 5%;
-
-    display: flex;
-    justify-content: left;
-    align-items: center;
-}
-
-img[name=logo]{
-    width: 50%;
-    height: 50%;
-}
-.sign-in{
-    width: 20%;
-    margin-right: 5%;
-
-    display: flex;
-    justify-content: right;
-    align-items: center;
-}
-.sign-in > .button{
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border-radius: 4px;
-    opacity: 1;
-    width: 50%;
-}
-.sign-in > .button > p{
-    text-align: center;
-    font: normal normal normal 3vh/2vw Montserrat;
-    letter-spacing: 0px;
-    color: #F29898;
-    opacity: 1;
 }
 
 .content{
@@ -136,7 +93,6 @@ form{
     align-items: center;
 
     margin: 1vh;
-
 }
 
 a{
@@ -146,31 +102,6 @@ a{
 
 label{
     font: normal normal normal 0.6em Montserrat;
-}
-
-.footer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    margin-top: 20vh;
-    margin-bottom: -10vh;
-}
-
-.footer > .links{
-
-}
-
-.footer a{
-    margin: 0 1vh 1vh 1vh;
-}
-
-.footer > .copyright{
-    text-align: center;
-    font: normal normal normal 1em Montserrat;
-    color: #FFFFFF;
-    border-top: 0.1em solid #FFFFFF;
 }
 
 

@@ -20,6 +20,9 @@ class AppController {
 
     protected function render(string $template = null, array $variables = [])
     {
+        $username = AuthenticationGuard::getAuthenticatedUsername();
+        if($username) $variables[] = ['username' => $username];
+
         $templatePath = 'public/views/'. $template.'.php';
         $output = 'File not found';
 

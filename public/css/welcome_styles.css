@@ -4,7 +4,7 @@ body{
 
 .container{
     width: 100vw;
-    padding-bottom: 2vh;
+    min-height: 100vh;
     background: transparent linear-gradient(180deg, #F29898 0%, #FFE4E4 100%, #F29898 100%) 0% 0% no-repeat padding-box;
 }
 
@@ -29,6 +29,7 @@ img[name=logo]{
 
 .content{
     margin: 5%;
+    min-height: 31vh;
 
     display: flex;
     flex-direction: column;
@@ -59,28 +60,4 @@ img[name=logo]{
 a{
     color: #FFFFFF;
     text-decoration: none;
-}
-
-.footer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    margin-top: 18vh;
-}
-
-.footer > .links{
-
-}
-
-.footer a{
-    margin: 0 1vh 1vh 1vh;
-}
-
-.footer > .copyright{
-    text-align: center;
-    font: normal normal normal 1em Montserrat;
-    color: #FFFFFF;
-    border-top: 0.1em solid #FFFFFF;
 }
