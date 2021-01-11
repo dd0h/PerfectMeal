@@ -53,6 +53,7 @@ body{
     width: 100%;
     margin-bottom: 3vh;
     padding: 1.5vh;
+    padding-bottom: 0;
 
     display: flex;
     flex-direction: column;
@@ -89,7 +90,7 @@ label[for="photo"]{
     border-radius: 6px;
 
     text-align: center;
-    font: normal normal bold 1em Arial;
+    font: normal normal bold 2vh/1vw Arial;
     padding: 1vh;
     letter-spacing: 0px;
     color: #F29898;
@@ -104,7 +105,7 @@ label[for="photo"]{
 
     margin: 1vw;
     text-align: left;
-    font: normal normal normal 1em Montserrat;
+    font: normal normal normal 2.5vh/1.5vw Montserrat;
     letter-spacing: 0px;
     color: #FFFFFF;
 }
@@ -121,11 +122,10 @@ button{
     background: #BD7676 0% 0% no-repeat padding-box;
     border: 3px solid #BD7676;
 
-    font: normal normal normal 1.2em Montserrat;
+    font: normal normal normal 3vh/2vw Montserrat;
     color: white;
 
     border-radius: 4px;
-    margin-bottom: 1vh;
     line-height: 2em;
     margin: 0 1vw 0 1vw;
 }
@@ -133,4 +133,11 @@ button{
 a{
     color: #FFFFFF;
     text-decoration: none;
+}
+
+.messages{
+    font: normal normal normal 1.5vh/0.3vw Montserrat;
+    color: red;
+    margin-top: 0.5vh;
+    height: 2vh;
 }

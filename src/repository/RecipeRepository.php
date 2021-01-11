@@ -34,14 +34,10 @@ class RecipeRepository extends Repository
 
     public function addRecipe(Recipe $recipe): void
     {
-        $date = new DateTime();
         $stmt = $this->database->connect()->prepare('
             INSERT INTO recipes (title, tags, ingredients, proportions, directions, image, created_at, user_id)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ');
-
-        //TODO you should get this value from logged user session
-        $user_id = 1;
 
         $stmt->execute([
             $recipe->getTitle(),
@@ -50,8 +46,8 @@ class RecipeRepository extends Repository
             $recipe->getProportions(),
             $recipe->getDirections(),
             $recipe->getImage(),
-            $date->format('Y-m-d'),
-            $user_id
+            $recipe->getCreatedAt(),
+            $recipe->getUserId(),
         ]);
     }
 }
