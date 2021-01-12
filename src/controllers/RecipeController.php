@@ -64,6 +64,8 @@ class RecipeController extends AppController {
         $author_id = $recipe->getUserId();
         $this->message['author'] = $this->userRepository->getUserById($author_id)->getUsername();
 
+        //TODO add ratings to view
+
         return $this->render('view_recipe', ['messages' => $this->message]);
     }
 

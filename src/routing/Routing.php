@@ -3,6 +3,7 @@
 require_once 'src/controllers/DefaultController.php';
 require_once 'src/controllers/SecurityController.php';
 require_once 'src/controllers/RecipeController.php';
+require_once 'src/controllers/RatingController.php';
 require_once 'src/AuthenticationGuard.php';
 require_once 'src/routing/Route.php';
 require_once 'src/routing/RouteCollection.php';

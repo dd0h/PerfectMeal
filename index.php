@@ -20,6 +20,8 @@ Router::route('addRecipe', 'RecipeController', 'addRecipe', 'POST');
 Router::route('viewRecipe', 'RecipeController', 'viewRecipe', 'GET');
 Router::route('searchRecipe', 'RecipeController', 'getRecipes', 'GET');
 
+Router::route('viewRecipe', 'RatingController', 'rateRecipe', 'POST');
+
 
 
 AuthenticationGuard::protect(["addRecipe"]);
