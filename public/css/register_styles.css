@@ -42,7 +42,7 @@ body{
     border: 1px solid rgba(112, 112, 112, 0.5);
 
     width: 80%;
-    padding: 2vh 0 2vh 0;
+    padding: 2vh 0 0 0;
     margin-bottom: 3vh;
 
     display: flex;
@@ -102,6 +102,13 @@ a{
 
 label{
     font: normal normal normal 0.6em Montserrat;
+}
+
+.messages{
+    font: normal normal normal 1.5vh/0.3vw Montserrat;
+    color: red;
+    margin-top: 0.5vh;
+    height: 2vh;
 }
 
 

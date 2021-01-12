@@ -22,12 +22,55 @@ class RecipeController extends AppController {
         $this->recipeRepository = new RecipeRepository();
     }
 
-    public function getRecipe(){
-        // TODO showing filtered recipes on searchRecipe view
+    public function getRecipes(){
+        $recipes = $this->recipeRepository->getAllRecipes();
+        foreach($recipes as $recipe){
+            $id = $recipe->getId();
+            $this->message[$id]['id'] = $id;
+            $this->message[$id]['title'] = $recipe->getTitle();
+            $this->message[$id]['ingredients'] = $recipe->getIngredients();
+            $this->message[$id]['proportions'] = $recipe->getProportions();
+            $this->message[$id]['directions'] = $recipe->getDirections();
+            $this->message[$id]['image'] = $recipe->getImage();
+            $this->message[$id]['created_at'] = $recipe->getCreatedAt();
+
+            $author_id = $recipe->getUserId();
+            $this->message[$id]['author'] = $this->userRepository->getUserById($author_id)->getUsername();
+        }
+        return $this->render('search_recipe', ['messages' => $this->message]);
     }
 
     public function viewRecipe(){
-        // TODO showing single recipe in viewRecipe/[id]
+        if(!isset($_GET['id']))
+            return $this->render('search_recipe', ['messages' => $this->message]);
+
+        $id = (int)$_GET['id'];
+        $recipe = $this->recipeRepository->getRecipe($id);
+        $this->message['title'] = $recipe->getTitle();
+
+        $tags = $recipe->getTags();
+        $ingredients = $recipe->getIngredients();
+
+        $tags = $this->prepareTags($tags);
+        $ingredients = $this->prepareTags($ingredients);
+
+        $this->message['tags'] = $tags;
+        $this->message['ingredients'] = $ingredients;
+        $this->message['proportions'] = $recipe->getProportions();
+        $this->message['directions'] = $recipe->getDirections();
+        $this->message['image'] = $recipe->getImage();
+        $this->message['created_at'] = $recipe->getCreatedAt();
+
+        $author_id = $recipe->getUserId();
+        $this->message['author'] = $this->userRepository->getUserById($author_id)->getUsername();
+
+        return $this->render('view_recipe', ['messages' => $this->message]);
+    }
+
+    private function prepareTags($tags){
+        str_replace(' ', '', $tags);
+        $tags = explode( ',', $tags);
+        return $tags;
     }
 
     public function addRecipe()
@@ -40,9 +83,10 @@ class RecipeController extends AppController {
                 dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
             );
 
-            $user = $this->userRepository->getUser(AuthenticationGuard::getAuthenticatedUsername());
+            $user = $this->userRepository->getUserByUsernameOrEmail(AuthenticationGuard::getAuthenticatedUsername());
 
-            $recipe = new Recipe($_POST['title'],
+            $recipe = new Recipe(null,
+                $_POST['title'],
                 $_POST['tags'],
                 $_POST['ingredients'],
                 $_POST['proportions'],
@@ -52,7 +96,8 @@ class RecipeController extends AppController {
                 $user->getId());
 
             $this->recipeRepository->addRecipe($recipe);
-            return $this->render('search_recipe', ['messages' => $this->message]);
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/searchRecipe");
         }else {
             $this->render('add_recipe', ['messages' => $this->message]);
         }

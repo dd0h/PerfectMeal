@@ -3,6 +3,7 @@
 
 class Recipe
 {
+    private $id;
     private $title;
     private $tags;
     private $ingredients;
@@ -13,9 +14,10 @@ class Recipe
     private $user_id;
 
     public function __construct(
-        $title, $tags, $ingredients, $proportions, $directions, $image, $created_at, $user_id
+        $id, $title, $tags, $ingredients, $proportions, $directions, $image, $created_at, $user_id
     )
     {
+        $this->id = $id;
         $this->title = $title;
         $this->ingredients = $ingredients;
         $this->tags = $tags;
@@ -24,6 +26,16 @@ class Recipe
         $this->image = $image;
         $this->created_at = $created_at;
         $this->user_id = $user_id;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id): void
+    {
+        $this->id = $id;
     }
 
     public function getTitle()

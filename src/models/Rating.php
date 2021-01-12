@@ -3,20 +3,33 @@
 
 class Rating
 {
+    private $id;
     private $recipe_id;
     private $user_id;
     private $rating;
     private $comment;
     private $rated_on;
 
-    public function __construct($recipe_id, $user_id, $rating, $comment, $rated_on)
+    public function __construct($id, $recipe_id, $user_id, $rating, $comment, $rated_on)
     {
+        $this->id = $id;
         $this->recipe_id = $recipe_id;
         $this->user_id = $user_id;
         $this->rating = $rating;
         $this->comment = $comment;
         $this->rated_on = $rated_on;
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
 
     public function getRecipeId()
     {

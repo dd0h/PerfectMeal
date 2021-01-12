@@ -23,7 +23,7 @@
                         repeat password
                         <input name="repeat_password" type="password">
                         <div class="accept_rules">
-                            <input id="accept_box" type="checkbox">
+                            <input id="accept_box" name="checkbox" type="checkbox">
                             <span class="checkmark"></span>
                             <label for="accept_box">I have read and accept PerfectMeal site rules</label>
                         </div>

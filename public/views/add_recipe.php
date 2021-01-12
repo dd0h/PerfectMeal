@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="input-container">
-                        Tags (cuisine, diet type, meal type)
+                        Tags (cuisine, diet type, meal type, separated by comma)
                         <textarea name="tags"><?php
                             echo isset($_POST['tags']) ? $_POST['tags'] : ''
                             ?></textarea>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="input-container">
-                        Ingredients
+                        Ingredients (separated by comma)
                         <textarea name="ingredients"><?php
                             echo isset($_POST['ingredients']) ? $_POST['ingredients'] : ''
                             ?></textarea>

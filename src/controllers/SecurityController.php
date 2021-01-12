@@ -22,7 +22,7 @@ class SecurityController extends AppController {
 
         $login = $_POST['login'];
 
-        $user = $this->userRepository->getUser($login);
+        $user = $this->userRepository->getUserByUsernameOrEmail($login);
         if(!$user){
             return $this->render('login', ['messages' => ['User with this username or email not exist!']]);
         }
@@ -55,19 +55,34 @@ class SecurityController extends AppController {
         $password = $_POST['password'];
         $repeat_password = $_POST['repeat_password'];
 
-        if($this->userRepository->getUser($username)){
+        if($username == null
+            or $email == null
+            or $password == null
+            or $repeat_password == null){
+            return $this->render('register', ['messages' => ['You have to fill all fields!']]);
+        }
+
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            return $this->render('register', ['messages' => ['Please enter proper email!']]);
+        }
+
+        if($this->userRepository->getUserByUsernameOrEmail($username)){
             return $this->render('register', ['messages' => ['This username is already used']]);
         }
 
-        if($this->userRepository->getUser($email)){
+        if($this->userRepository->getUserByUsernameOrEmail($email)){
             return $this->render('register', ['messages' => ['This email is already used']]);
         }
 
         if ($password !== $repeat_password) {
-            return $this->render('register', ['messages' => ['Please provide proper password']]);
+            return $this->render('register', ['messages' => ['The passwords are not the same!']]);
         }
 
-        $user = new User($username, $email, password_hash($password, PASSWORD_BCRYPT));
+        if(!isset($_POST['checkbox'])){
+            return $this->render('register', ['messages' => ['You have to accept PerfectMeal site rules!']]);
+        }
+
+        $user = new User(null, $username, $email, password_hash($password, PASSWORD_BCRYPT));
 
         $this->userRepository->addUser($user);
 

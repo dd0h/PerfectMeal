@@ -38,68 +38,10 @@
                     <div class="tag"><i class="fas fa-times-circle"></i>vegan</div>
                     <div class="tag"><i class="fas fa-times-circle"></i>italian</div>
                 </div>
-
                 <div class="recipes-wrapper">
-                    <div class="recipe-frame">
-                        <img name="food-photo" src="public/img/food_example1.png">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="recipe-name">Chilli con carne with garlic sauce</div>
-                        <div class="needed-ingredients">
-                            You also need: tomato sauce, paprika, canned tomato,
-                            ground beef, tomato paste, beer, worcestershire, cumin, garlic
-                        </div>
-                        <div class="author">Added by: Jeorge96</div>
-                    </div>
-                    <div class="recipe-frame">
-                        <img name="food-photo" src="public/img/food_example2.png">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="recipe-name">Chilli con carne by Mruczek78</div>
-                        <div class="needed-ingredients">
-                            You also need: tomato sauce, paprika, canned tomato,
-                            ground beef, tomato paste, beer, worcestershire, cumin, garlic
-                        </div>
-                        <div class="author">Added by: Jeorge96</div>
-                    </div>
-                    <div class="recipe-frame">
-                        <img name="food-photo" src="public/img/food_example3.png">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="recipe-name">Hot spicy spaghetti with cayenne and chilli pepper and Hot spicy spaghetti with cayenne and chilli pepper</div>
-                        <div class="needed-ingredients">
-                            You also need: tomato sauce, paprika, canned tomato,
-                            ground beef, tomato paste, beer, worcestershire, cumin, garlic
-                        </div>
-                        <div class="author">Added by: Jeorge96</div>
-                    </div>
-                    <div class="recipe-frame">
-                        <img name="food-photo" src="public/img/food_example3.png">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="recipe-name">Hot spicy spaghetti with cayenne and chilli pepper and Hot spicy spaghetti with cayenne and chilli pepper</div>
-                        <div class="needed-ingredients">
-                            You also need: tomato sauce, paprika, canned tomato,
-                            ground beef, tomato paste, beer, worcestershire, cumin, garlic
-                        </div>
-                        <div class="author">Added by: Jeorge96</div>
-                    </div>
+                    <?php include('common_view_parts/recipes.php') ?>
                 </div>
             </div>
-
         </div>
         <?php include('common_view_parts/footer.php') ?>
     </div>

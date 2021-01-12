@@ -9,7 +9,7 @@ class RecipeRepository extends Repository
     public function getRecipe(int $id): ?Recipe
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.users WHERE id = :id
+            SELECT * FROM public.recipes WHERE id = :id
         ');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -21,6 +21,7 @@ class RecipeRepository extends Repository
         }
 
         return new Recipe(
+            $recipe['id'],
             $recipe['title'],
             $recipe['tags'],
             $recipe['ingredients'],
@@ -30,6 +31,36 @@ class RecipeRepository extends Repository
             $recipe['created_at'],
             $recipe['user_id']
         );
+    }
+
+    public function getAllRecipes(): ?array
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM public.recipes
+        ');
+        $stmt->execute();
+
+        while($recipes_table[] = $stmt->fetch(PDO::FETCH_ASSOC));
+
+        if ($recipes_table == false) {
+            return null;
+        }
+
+        foreach($recipes_table as $recipe){
+            if($recipe['id']) $recipes[] = new Recipe(
+                $recipe['id'],
+                $recipe['title'],
+                $recipe['tags'],
+                $recipe['ingredients'],
+                $recipe['proportions'],
+                $recipe['directions'],
+                $recipe['image'],
+                $recipe['created_at'],
+                $recipe['user_id']
+            );
+        }
+
+        return $recipes;
     }
 
     public function addRecipe(Recipe $recipe): void
