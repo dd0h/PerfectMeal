@@ -4,9 +4,10 @@
     <link rel="stylesheet" type="text/css" href="public/css/footer_styles.css">
     <link rel="stylesheet" type="text/css" href="public/css/upper_bar_styles.css">
     <script src="https://kit.fontawesome.com/46e60e2318.js" crossorigin="anonymous"></script>
+    <script src="public/js/stars.js"></script>
     <title>Chilli con carne with garlic sauce</title>
 </head>
-<body>
+<body onload="starsHovering()">
     <div class="container">
         <?php include('common_view_parts/upper_bar.php') ?>
         <div class="content">
@@ -53,53 +54,7 @@
                             echo $messages['author'];
                         } ?></p>
                     </div>
-                    <div class="comments">
-                        <p>Comments</p>
-                        <div class="rate">
-                            Rate the recipe and leave comment (optional):
-                            <form action="viewRecipe" method="POST">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <textarea name="comment"/></textarea>
-                                <button name="add-my-recipe" type="submit">Submit</button>
-                            </form>
-                        </div>
-                        <div class="comment">
-                            <div class="comment-info">
-                                <div class="comment-author">By MarasKoks</div>
-                                <div class="comment-date">posted 2020-09-10 21-37-00</div>
-                            </div>
-                            <div class="comment-content">
-                                <div class="comment-text">This sucks!</div>
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <div class="comment-info">
-                                <div class="comment-author">By MRoman</div>
-                                <div class="comment-date">posted 2020-09-10 21-37-00</div>
-                            </div>
-                            <div class="comment-content">
-                                <div class="comment-text">Awesome!</div>
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <?php include ('common_view_parts/comments.php') ?>
                 </div>
             </div>
         </div>

@@ -137,9 +137,18 @@ a{
     justify-content: left;
 }
 
+.rate > a{
+    color: yellow;
+    text-decoration: underline;
+}
+
+input[type="checkbox"] {
+
+}
+
 .rate > form > .stars{
     margin: 1vh 0 1vh 0;
-    color: yellow;
+    color: white;
 }
 
 .rate > form > button{
@@ -152,6 +161,7 @@ a{
     margin-top: 1vh;
     border-radius: 4px;
     margin-left: auto;
+    visibility: hidden;
 }
 
 .comment{

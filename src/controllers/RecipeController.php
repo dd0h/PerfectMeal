@@ -54,6 +54,7 @@ class RecipeController extends AppController {
         $tags = $this->prepareTags($tags);
         $ingredients = $this->prepareTags($ingredients);
 
+        $this->message['id'] = $id;
         $this->message['tags'] = $tags;
         $this->message['ingredients'] = $ingredients;
         $this->message['proportions'] = $recipe->getProportions();
@@ -65,6 +66,10 @@ class RecipeController extends AppController {
         $this->message['author'] = $this->userRepository->getUserById($author_id)->getUsername();
 
         //TODO add ratings to view
+
+
+        if(AuthenticationGuard::getAuthenticatedUsername())
+            $this->message['logged_user'] = true;
 
         return $this->render('view_recipe', ['messages' => $this->message]);
     }
@@ -98,8 +103,7 @@ class RecipeController extends AppController {
                 $user->getId());
 
             $this->recipeRepository->addRecipe($recipe);
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location: {$url}/searchRecipe");
+            $this->headTo("searchRecipe");
         }else {
             $this->render('add_recipe', ['messages' => $this->message]);
         }

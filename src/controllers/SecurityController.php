@@ -34,14 +34,12 @@ class SecurityController extends AppController {
 
         AuthenticationGuard::authenticateUser($user);
 
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/searchRecipe");
+        $this->headTo("searchRecipe");
     }
 
     public function logout(){
         AuthenticationGuard::revokeAccess();
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/login");
+        $this->headTo("login");
     }
 
     public function register()
