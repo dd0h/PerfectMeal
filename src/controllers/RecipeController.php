@@ -49,7 +49,6 @@ class RecipeController extends AppController {
         $author_id = $recipe->getUserId();
         $this->models['author'] = $this->userRepository->getUserById($author_id);
 
-
         $ratings = $this->ratingRepository->getRatingsByRecipeId($id);
         $this->models['ratings'] = $ratings;
 
@@ -57,11 +56,32 @@ class RecipeController extends AppController {
             $this->models['rating_authors'][] = $this->userRepository->getUserById($rating->getUserId());
         }
 
-        if(AuthenticationGuard::getAuthenticatedUsername())
-            $this->messages['logged_user'] = true;
+        $this->messages['user_type'] = $this->setUserType(
+            $this->models['rating_authors'],
+            $this->models['author']->getUsername()
+        );
+
+        $this->messages['average_rating'] = $this->recipeRepository->getAverageRecipeRating($id);
 
         return $this->render('view_recipe', ['models' => $this->models, 'messages' => $this->messages]);
     }
+
+    private function setUserType($rating_authors, $recipe_owner){
+        $logged_user = AuthenticationGuard::getAuthenticatedUsername();
+
+        if($logged_user == null) return 'guest';
+
+        if($logged_user == $recipe_owner) return 'recipe_owner';
+
+        if($rating_authors)
+            foreach($rating_authors as $rating_author){
+                if($rating_author->getUsername() == $logged_user) {
+                    return 'already_rated';
+                }
+            }
+    }
+
+
 
     private function prepareTags($tags){
         str_replace(' ', '', $tags);

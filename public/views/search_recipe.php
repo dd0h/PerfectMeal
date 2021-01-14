@@ -39,7 +39,8 @@
                     <div class="tag"><i class="fas fa-times-circle"></i>italian</div>
                 </div>
                 <div class="recipes-wrapper">
-                    <?php include('view_parts/recipes.php') ?>
+                <?php foreach($models['searchedRecipes'] as $searchedRecipe)
+                    include('view_parts/recipes.php'); ?>
                 </div>
             </div>
         </div>

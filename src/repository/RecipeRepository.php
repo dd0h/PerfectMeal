@@ -34,6 +34,20 @@ class RecipeRepository extends Repository
         );
     }
 
+    public function getAverageRecipeRating($recipe_id): ?float
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM getAverageRating(:id)
+        ');
+        $stmt->bindParam(':id', $recipe_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $average_recipe_rating = $stmt->fetch(PDO::FETCH_ASSOC);
+        $average_recipe_rating = (float) $average_recipe_rating['getaveragerating'];
+
+        return $average_recipe_rating;
+    }
+
     public function getSearchedRecipes(): ?array
     {
         $stmt = $this->database->connect()->prepare('
@@ -56,7 +70,8 @@ class RecipeRepository extends Repository
                 $searchedRecipe['ingredients'],
                 $searchedRecipe['image'],
                 $searchedRecipe['created_at'],
-                $searchedRecipe['username']
+                $searchedRecipe['username'],
+                $this->getAverageRecipeRating($searchedRecipe['id'])
             );
         }
         return $searchedRecipes;

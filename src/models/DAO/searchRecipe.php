@@ -9,9 +9,10 @@ class searchRecipe
     private $image;
     private $created_at;
     private $author;
+    private $average_rating;
 
     public function __construct(
-        $id, $title, $ingredients, $image, $created_at, $author
+        $id, $title, $ingredients, $image, $created_at, $author, $average_rating
     )
     {
         $this->id = $id;
@@ -20,6 +21,7 @@ class searchRecipe
         $this->image = $image;
         $this->created_at = $created_at;
         $this->author = $author;
+        $this->average_rating = $average_rating;
     }
 
     public function getId()
@@ -52,6 +54,9 @@ class searchRecipe
         return $this->author;
     }
 
-
+    public function getAverageRating()
+    {
+        return $this->average_rating;
+    }
 
 }

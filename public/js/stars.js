@@ -29,7 +29,7 @@ function starsHovering() {
 
             let rate = countStars();
             document.getElementById('rate').value = rate;
-            if(rate > 0) document.getElementById('add-my-recipe').style.visibility = 'visible';
+            if(rate > 0) showSubmit();
         }
     }
 }
@@ -42,4 +42,8 @@ function countStars(){
         }
     }
     return stars;
+}
+
+function showSubmit() {
+    document.getElementById('add-my-recipe').style.visibility = 'visible';
 }
