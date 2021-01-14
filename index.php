@@ -18,7 +18,7 @@ Router::route('register', 'SecurityController', 'register', 'POST');
 
 Router::route('addRecipe', 'RecipeController', 'addRecipe', 'POST');
 Router::route('viewRecipe', 'RecipeController', 'viewRecipe', 'GET');
-Router::route('searchRecipe', 'RecipeController', 'getRecipes', 'GET');
+Router::route('searchRecipe', 'RecipeController', 'getSearchedRecipes', 'GET');
 
 Router::route('viewRecipe', 'RatingController', 'rateRecipe', 'POST');
 

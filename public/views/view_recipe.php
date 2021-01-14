@@ -9,55 +9,41 @@
 </head>
 <body onload="starsHovering()">
     <div class="container">
-        <?php include('common_view_parts/upper_bar.php') ?>
+        <?php include('view_parts/common/upper_bar.php') ?>
         <div class="content">
             <div class="recipe-container">
-                <div class="meal-name"><?php if(isset($messages) and !empty($messages)) {
-                        echo $messages['title'];
-                    } ?></div>
-                <img name="food-photo" src="public/uploads/<?php if(isset($messages) and !empty($messages)) {
-                    echo $messages['image'];
-                } ?>">
+                <div class="meal-name"><?php echo $models['recipe']->getTitle(); ?></div>
+                <img name="food-photo" src="public/uploads/<?php echo $models['recipe']->getImage(); ?>">
                 <div class="detail-container">
                     <div class="ingredients">
                         <p>Ingredients</p>
                         <div class="ingredients-container">
-                            <?php if(isset($messages['ingredients']) and !empty($messages['ingredients'])) {
-                                foreach($messages['ingredients'] as $ingredient)
-                                    echo "<div class='tag'></i>$ingredient</div>";
-                            } ?>
+                            <?php foreach($models['recipe']->getIngredients() as $ingredient)
+                                    echo "<div class='tag'></i>$ingredient</div>"; ?>
                         </div>
                     </div>
                     <div class="tags">
                         <p>Tags</p>
                         <div class="tags-container">
-                            <?php if(isset($messages['tags']) and !empty($messages['tags'])) {
-                                foreach($messages['tags'] as $tag)
-                                    echo "<div class='tag'></i>$tag</div>";
-                            } ?>
+                            <?php foreach($models['recipe']->getTags() as $tag)
+                                echo "<div class='tag'></i>$tag</div>"; ?>
                         </div>
                     </div>
                     <div class="recipe">
                         <p>Ingredients proportions</p>
-                        <text style="white-space: pre-line"><?php if(isset($messages) and !empty($messages)) {
-                            echo $messages['proportions'];
-                        } ?></text>
+                        <text style="white-space: pre-line"><?php echo $models['recipe']->getProportions(); ?></text>
                     </div>
                     <div class="directions">
                         <p>Directions</p>
-                        <?php if(isset($messages) and !empty($messages)) {
-                            echo $messages['directions'];
-                        } ?>
+                        <?php echo $models['recipe']->getDirections(); ?>
                     </div>
                     <div class="author">
-                        <p>Author: <?php if(isset($messages) and !empty($messages)) {
-                            echo $messages['author'];
-                        } ?></p>
+                        <p>Author: <?php echo $models['author']->getUsername(); ?></p>
                     </div>
-                <?php include ('common_view_parts/comments.php') ?>
+                <?php include('view_parts/comments/comments.php') ?>
                 </div>
             </div>
         </div>
-        <?php include('common_view_parts/footer.php') ?>
+        <?php include('view_parts/common/footer.php') ?>
     </div>
 </body>

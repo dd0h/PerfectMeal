@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <?php include('common_view_parts/upper_bar.php') ?>
+        <?php include('view_parts/common/upper_bar.php') ?>
         <div class="content">
             <div class="login-container">
                 <div class="Sign-in-text">Sign in</div>
@@ -33,6 +33,6 @@
                 <div class="Sign-up-link"><a href="register">Don't have account? Sign up now!</a></div>
             </div>
         </div>
-        <?php include('common_view_parts/footer.php') ?>
+        <?php include('view_parts/common/footer.php') ?>
     </div>
 </body>

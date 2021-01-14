@@ -2,6 +2,7 @@
 
 require_once 'Repository.php';
 require_once __DIR__.'/../models/Recipe.php';
+require_once __DIR__.'/../models/DAO/searchRecipe.php';
 
 class RecipeRepository extends Repository
 {
@@ -33,34 +34,32 @@ class RecipeRepository extends Repository
         );
     }
 
-    public function getAllRecipes(): ?array
+    public function getSearchedRecipes(): ?array
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.recipes
+            SELECT r.id, title, ingredients, image, created_at, u.username
+            FROM recipes r JOIN users u ON r.user_id=u.id
         ');
         $stmt->execute();
 
-        while($recipes_table[] = $stmt->fetch(PDO::FETCH_ASSOC));
+        while($searchedRecipes_table[] = $stmt->fetch(PDO::FETCH_ASSOC));
 
-        if ($recipes_table == false) {
+        if ($searchedRecipes_table == false) {
             return null;
         }
 
-        foreach($recipes_table as $recipe){
-            if($recipe['id']) $recipes[] = new Recipe(
-                $recipe['id'],
-                $recipe['title'],
-                $recipe['tags'],
-                $recipe['ingredients'],
-                $recipe['proportions'],
-                $recipe['directions'],
-                $recipe['image'],
-                $recipe['created_at'],
-                $recipe['user_id']
+        $searchedRecipes = [];
+        foreach($searchedRecipes_table as $searchedRecipe){
+            if($searchedRecipe['id']) $searchedRecipes[] = new searchRecipe(
+                $searchedRecipe['id'],
+                $searchedRecipe['title'],
+                $searchedRecipe['ingredients'],
+                $searchedRecipe['image'],
+                $searchedRecipe['created_at'],
+                $searchedRecipe['username']
             );
         }
-
-        return $recipes;
+        return $searchedRecipes;
     }
 
     public function addRecipe(Recipe $recipe): void

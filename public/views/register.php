@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <?php include('common_view_parts/upper_bar.php') ?>
+        <?php include('view_parts/common/upper_bar.php') ?>
         <div class="content">
             <div class="register-container">
                 <div class="Sign-up-text">Sign up</div>
@@ -41,6 +41,6 @@
                 </div>
             </div>
         </div>
-        <?php include('common_view_parts/footer.php') ?>
+        <?php include('view_parts/common/footer.php') ?>
     </div>
 </body>

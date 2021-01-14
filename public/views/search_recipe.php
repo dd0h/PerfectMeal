@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <?php include('common_view_parts/upper_bar.php') ?>
+        <?php include('view_parts/common/upper_bar.php') ?>
         <div class="content">
 
             <div class="ingredients-container">
@@ -39,10 +39,10 @@
                     <div class="tag"><i class="fas fa-times-circle"></i>italian</div>
                 </div>
                 <div class="recipes-wrapper">
-                    <?php include('common_view_parts/recipes.php') ?>
+                    <?php include('view_parts/recipes.php') ?>
                 </div>
             </div>
         </div>
-        <?php include('common_view_parts/footer.php') ?>
+        <?php include('view_parts/common/footer.php') ?>
     </div>
 </body>

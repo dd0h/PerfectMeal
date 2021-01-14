@@ -21,4 +21,32 @@ class RatingRepository extends Repository
             $rating->getRatedOn(),
         ]);
     }
+
+    public function getRatingsByRecipeId(int $recipe_id): ?array
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM public.ratings WHERE recipe_id = :recipe_id ORDER BY id DESC
+        ');
+        $stmt->bindParam(':recipe_id', $recipe_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        while($ratings_table[] = $stmt->fetch(PDO::FETCH_ASSOC));
+
+        if ($ratings_table == false) {
+            return null;
+        }
+
+        $ratings = [];
+        foreach($ratings_table as $rating){
+            if($rating['id']) $ratings[] = new Rating(
+                $rating['id'],
+                $rating['recipe_id'],
+                $rating['user_id'],
+                $rating['rating'],
+                $rating['comment'],
+                $rating['rated_on'],
+            );
+        }
+        return $ratings;
+    }
 }

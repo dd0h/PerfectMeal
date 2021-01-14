@@ -23,6 +23,6 @@
                 <a href="searchRecipe">Search for a recipe!</a>
             </div>
         </div>
-        <?php include('common_view_parts/footer.php') ?>
+        <?php include('view_parts/common/footer.php') ?>
     </div>
 </body>

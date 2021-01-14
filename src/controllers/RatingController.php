@@ -30,6 +30,8 @@ class RatingController extends AppController {
             return $this->render("searchRecipe", ['messages' => $this->message]);
         }
 
+        //TODO Block rating when: 1. user rates his own recipe 2. user rates 2nd time
+
         $username = AuthenticationGuard::getAuthenticatedUsername();
         $user_id = $this->userRepository->getUserByUsernameOrEmail($username)->getId();
 
