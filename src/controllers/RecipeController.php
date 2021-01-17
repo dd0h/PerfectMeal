@@ -25,13 +25,7 @@ class RecipeController extends AppController {
         $this->ratingRepository = new RatingRepository();
     }
 
-    public function getAllRecipes(){
-        $searchedRecipes = $this->recipeRepository->getAllRecipes();
-        $this->models['searchedRecipes'] = $searchedRecipes;
-        return $this->render('search_recipe', ['models' => $this->models]);
-    }
-
-    public function search()
+    public function searchRecipes()
     {
         $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
@@ -42,7 +36,7 @@ class RecipeController extends AppController {
             header('Content-type: application/json');
             http_response_code(200);
 
-            echo json_encode($this->recipeRepository->getRecipesByTags($decoded['search']));
+            echo json_encode($this->recipeRepository->getSearchedRecipes($decoded['search']));
         }
     }
 

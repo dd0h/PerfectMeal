@@ -19,11 +19,8 @@
                     <button>Categories</button>
                 </div>
                 <input placeholder="search ingredients" type="text"/>
-                <div class="tags-container">
-                    <div class="tag"><i class="fas fa-times-circle"></i>chilli pepper</div>
-                    <div class="tag"><i class="fas fa-times-circle"></i>onion</div>
-                    <div class="tag"><i class="fas fa-times-circle"></i>oregano</div>
-                    <div class="tag"><i class="fas fa-times-circle"></i>cayenne</div>
+                <div class="ingredients-wrapper">
+
                 </div>
             </div>
 

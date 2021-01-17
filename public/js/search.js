@@ -1,17 +1,23 @@
 const search = document.querySelector('input[placeholder="search ingredients"]');
 const recipesContainer = document.querySelector(".recipes-wrapper");
+const ingredientsWrapper = document.querySelector(".ingredients-wrapper");
 
-const data = {search: search.value};
-fetchRecipes(data);
+
+fetchRecipes({search: '%'});
 
 search.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
-        const data = {search: this.value};
-        fetchRecipes(data);
+        addIngredient(this.value);
+        fetchRecipes();
+        search.value = '';
     }
 });
 
-function fetchRecipes(data){
+function fetchRecipes(){
+    let ingredients = getIngredients();
+    //let tags = getTags(); TODO include tags to searching
+    const data = {search: ingredients};
+
     fetch("/searchRecipe", {
         method: "POST",
         headers: {
@@ -24,6 +30,26 @@ function fetchRecipes(data){
         recipesContainer.innerHTML = "";
         loadRecipes(recipes)
     });
+}
+
+function getIngredients() {
+    let ingredientElements = document.getElementsByClassName("ingredient");
+    let ingredients = '';
+    for(let i = 0; i < ingredientElements.length; i++){
+        ingredients += ingredientElements[i].getAttribute("name") + "%";
+    }
+    return '%' + ingredients;
+}
+
+function addIngredient(name) {
+    if(!document.getElementsByName(name).length)
+        ingredientsWrapper.innerHTML += '<div class="ingredient" name="' + name + '">' +
+            '<i onclick="removeParent(this)" class="fas fa-times-circle"></i>' + name + '</div>';
+}
+
+function removeParent(element) {
+    element.parentNode.remove(element);
+    fetchRecipes();
 }
 
 function loadRecipes(recipes) {
@@ -45,8 +71,8 @@ function createRecipe(recipe) {
     image.src = `public/uploads/${recipe.image}`;
 
     const stars = clone.querySelector(".stars");
-    stars.innerHTML = '<i name="phantom-star" class="fas fa-star"></i>';
-    for(let i = 0; i < recipe.getaveragerating; i++) stars.innerHTML += '<i class="fas fa-star"></i>'
+    if(recipe.getaveragerating == null)  stars.innerHTML = '<i name="phantom-star" class="fas fa-star"></i>';
+    for(let i = 0; i < recipe.getaveragerating; i++) stars.innerHTML += '<i class="fas fa-star"></i>';
 
     const title = clone.querySelector(".recipe-name");
     title.innerHTML = recipe.title;

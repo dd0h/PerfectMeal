@@ -48,41 +48,12 @@ class RecipeRepository extends Repository
         return $average_recipe_rating;
     }
 
-    public function getAllRecipes(): ?array
+    public function getSearchedRecipes(string $searchString)
     {
-        $stmt = $this->database->connect()->prepare('
-            SELECT r.id, title, ingredients, image, created_at, u.username
-            FROM recipes r JOIN users u ON r.user_id=u.id
-        ');
-        $stmt->execute();
-
-        while($searchedRecipes_table[] = $stmt->fetch(PDO::FETCH_ASSOC));
-
-        if ($searchedRecipes_table == false) {
-            return null;
-        }
-
-        $searchedRecipes = [];
-        foreach($searchedRecipes_table as $searchedRecipe){
-            if($searchedRecipe['id']) $searchedRecipes[] = new searchRecipe(
-                $searchedRecipe['id'],
-                $searchedRecipe['title'],
-                $searchedRecipe['ingredients'],
-                $searchedRecipe['image'],
-                $searchedRecipe['created_at'],
-                $searchedRecipe['username'],
-                $this->getAverageRecipeRating($searchedRecipe['id'])
-            );
-        }
-        return $searchedRecipes;
-    }
-
-    public function getRecipesByTags(string $searchString)
-    {
-        $searchString = '%' . strtolower($searchString) . '%';
+        $searchString = strtolower($searchString);
         $stmt = $this->database->connect()->prepare('
             SELECT r.id, title, ingredients, image, created_at, u.username, getAverageRating(r.id)
-            FROM recipes r JOIN users u ON r.user_id=u.id WHERE LOWER(ingredients) LIKE :search
+            FROM recipes r JOIN users u ON r.user_id=u.id WHERE LOWER(ingredients) LIKE :search ORDER BY r.id DESC
         ');
         $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
         $stmt->execute();
