@@ -160,6 +160,10 @@ body{
     color: yellow;
 }
 
+.stars > i[name="phantom-star"]{
+    visibility: hidden;
+}
+
 .recipe-name, .needed-ingredients, .author{
     margin: 1vh 1vw 1vh 1vw;
     background: rgba(242,152,152, 0.8) 0% 0% no-repeat padding-box;

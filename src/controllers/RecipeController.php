@@ -25,10 +25,25 @@ class RecipeController extends AppController {
         $this->ratingRepository = new RatingRepository();
     }
 
-    public function getSearchedRecipes(){
-        $searchedRecipes = $this->recipeRepository->getSearchedRecipes();
+    public function getAllRecipes(){
+        $searchedRecipes = $this->recipeRepository->getAllRecipes();
         $this->models['searchedRecipes'] = $searchedRecipes;
         return $this->render('search_recipe', ['models' => $this->models]);
+    }
+
+    public function search()
+    {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            echo json_encode($this->recipeRepository->getRecipesByTags($decoded['search']));
+        }
     }
 
     public function viewRecipe(){
@@ -66,30 +81,6 @@ class RecipeController extends AppController {
         return $this->render('view_recipe', ['models' => $this->models, 'messages' => $this->messages]);
     }
 
-    private function setUserType($rating_authors, $recipe_owner){
-        $logged_user = AuthenticationGuard::getAuthenticatedUsername();
-
-        if($logged_user == null) return 'guest';
-
-        if($logged_user == $recipe_owner) return 'recipe_owner';
-
-        if($rating_authors)
-            foreach($rating_authors as $rating_author){
-                if($rating_author->getUsername() == $logged_user) {
-                    return 'already_rated';
-                }
-            }
-    }
-
-
-
-    private function prepareTags($tags){
-        str_replace(' ', '', $tags);
-        $tags = explode( ',', $tags);
-
-        return $tags;
-    }
-
     public function addRecipe()
     {
         $this->checkFields();
@@ -117,6 +108,28 @@ class RecipeController extends AppController {
         }else {
             $this->render('add_recipe', ['messages' => $this->messages]);
         }
+    }
+
+    private function setUserType($rating_authors, $recipe_owner){
+        $logged_user = AuthenticationGuard::getAuthenticatedUsername();
+
+        if($logged_user == null) return 'guest';
+
+        if($logged_user == $recipe_owner) return 'recipe_owner';
+
+        if($rating_authors)
+            foreach($rating_authors as $rating_author){
+                if($rating_author->getUsername() == $logged_user) {
+                    return 'already_rated';
+                }
+            }
+    }
+
+    private function prepareTags($tags){
+        str_replace(' ', '', $tags);
+        $tags = explode( ',', $tags);
+
+        return $tags;
     }
 
     private function checkFields(){

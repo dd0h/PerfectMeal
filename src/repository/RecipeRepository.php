@@ -2,7 +2,7 @@
 
 require_once 'Repository.php';
 require_once __DIR__.'/../models/Recipe.php';
-require_once __DIR__.'/../models/DAO/searchRecipe.php';
+
 
 class RecipeRepository extends Repository
 {
@@ -48,7 +48,7 @@ class RecipeRepository extends Repository
         return $average_recipe_rating;
     }
 
-    public function getSearchedRecipes(): ?array
+    public function getAllRecipes(): ?array
     {
         $stmt = $this->database->connect()->prepare('
             SELECT r.id, title, ingredients, image, created_at, u.username
@@ -75,6 +75,19 @@ class RecipeRepository extends Repository
             );
         }
         return $searchedRecipes;
+    }
+
+    public function getRecipesByTags(string $searchString)
+    {
+        $searchString = '%' . strtolower($searchString) . '%';
+        $stmt = $this->database->connect()->prepare('
+            SELECT r.id, title, ingredients, image, created_at, u.username, getAverageRating(r.id)
+            FROM recipes r JOIN users u ON r.user_id=u.id WHERE LOWER(ingredients) LIKE :search
+        ');
+        $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function addRecipe(Recipe $recipe): void

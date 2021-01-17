@@ -47,3 +47,5 @@ function countStars(){
 function showSubmit() {
     document.getElementById('add-my-recipe').style.visibility = 'visible';
 }
+
+starsHovering();

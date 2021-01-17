@@ -11,6 +11,7 @@ Router::route('', 'DefaultController', '', 'GET');
 Router::route('login', 'DefaultController', 'login', 'GET');
 Router::route('register', 'DefaultController', 'register', 'GET');
 Router::route('addRecipe', 'DefaultController', 'addRecipe', 'GET');
+Router::route('searchRecipe', 'DefaultController', 'searchRecipe', 'GET');
 
 Router::route('login', 'SecurityController', 'login', 'POST');
 Router::route('logout', 'SecurityController', 'logout', 'POST');
@@ -18,7 +19,7 @@ Router::route('register', 'SecurityController', 'register', 'POST');
 
 Router::route('addRecipe', 'RecipeController', 'addRecipe', 'POST');
 Router::route('viewRecipe', 'RecipeController', 'viewRecipe', 'GET');
-Router::route('searchRecipe', 'RecipeController', 'getSearchedRecipes', 'GET');
+Router::route('searchRecipe', 'RecipeController', 'search', 'POST');
 
 Router::route('viewRecipe', 'RatingController', 'rateRecipe', 'POST');
 

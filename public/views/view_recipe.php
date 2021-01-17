@@ -4,10 +4,10 @@
     <link rel="stylesheet" type="text/css" href="public/css/footer_styles.css">
     <link rel="stylesheet" type="text/css" href="public/css/upper_bar_styles.css">
     <script src="https://kit.fontawesome.com/46e60e2318.js" crossorigin="anonymous"></script>
-    <script src="public/js/stars.js"></script>
+    <script defer src="public/js/stars.js"></script>
     <title>Chilli con carne with garlic sauce</title>
 </head>
-<body onload="starsHovering()">
+<body>
     <div class="container">
         <?php include('view_parts/common/upper_bar.php') ?>
         <div class="content">
