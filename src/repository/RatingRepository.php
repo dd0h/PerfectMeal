@@ -8,7 +8,7 @@ class RatingRepository extends Repository
 
     public function addRating(Rating $rating): void
     {
-        $stmt = $this->database->connect()->prepare('
+        $stmt = $this->connection->prepare('
             INSERT INTO ratings (recipe_id, user_id, rating, comment, rated_on)
             VALUES (?, ?, ?, ?, ?)
         ');
@@ -24,7 +24,7 @@ class RatingRepository extends Repository
 
     public function getRatingsByRecipeId(int $recipe_id): ?array
     {
-        $stmt = $this->database->connect()->prepare('
+        $stmt = $this->connection->prepare('
             SELECT * FROM public.ratings WHERE recipe_id = :recipe_id ORDER BY id DESC
         ');
         $stmt->bindParam(':recipe_id', $recipe_id, PDO::PARAM_INT);

@@ -8,7 +8,7 @@ class UserRepository extends Repository
 
     public function getUserByUsernameOrEmail(string $login): ?User
     {
-        $stmt = $this->database->connect()->prepare('
+        $stmt = $this->connection->prepare('
             SELECT * FROM public.users WHERE email = :login or username = :login
         ');
         $stmt->bindParam(':login', $login, PDO::PARAM_STR);
@@ -30,7 +30,7 @@ class UserRepository extends Repository
 
     public function getUserById(int $id): ?User
     {
-        $stmt = $this->database->connect()->prepare('
+        $stmt = $this->connection->prepare('
             SELECT * FROM public.users WHERE id = :id
         ');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -52,7 +52,7 @@ class UserRepository extends Repository
 
     public function addUser(User $user)
     {
-        $stmt = $this->database->connect()->prepare('
+        $stmt = $this->connection->prepare('
             INSERT INTO users (email, password, username)
             VALUES (?, ?, ?)
         ');

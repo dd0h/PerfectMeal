@@ -49,6 +49,7 @@ body{
     background: #F29898 0% 0% no-repeat padding-box;
     margin-top: 1vh;
     margin-bottom: 1vh;
+    border-radius: 3px;
 }
 
 .menu > button, .menu > .dropdown > button{
@@ -101,6 +102,7 @@ body{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    min-height: 6vh;
 }
 
 .tag, .ingredient{

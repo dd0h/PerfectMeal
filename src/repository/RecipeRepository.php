@@ -9,7 +9,7 @@ class RecipeRepository extends Repository
 
     public function getRecipe(int $id): ?Recipe
     {
-        $stmt = $this->database->connect()->prepare('
+        $stmt = $this->connection->prepare('
             SELECT * FROM public.recipes WHERE id = :id
         ');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -36,7 +36,7 @@ class RecipeRepository extends Repository
 
     public function getAverageRecipeRating($recipe_id): ?float
     {
-        $stmt = $this->database->connect()->prepare('
+        $stmt = $this->connection->prepare('
             SELECT * FROM getAverageRating(:id)
         ');
         $stmt->bindParam(':id', $recipe_id, PDO::PARAM_INT);
@@ -53,7 +53,7 @@ class RecipeRepository extends Repository
         $ingredients = strtolower($ingredients);
         $tags = strtolower($tags);
 
-        $stmt = $this->database->connect()->prepare('
+        $stmt = $this->connection->prepare('
             SELECT r.id, title, ingredients, image, created_at, u.username, getAverageRating(r.id)
             FROM recipes r JOIN users u ON r.user_id=u.id 
             WHERE LOWER(ingredients) LIKE :ingredients AND LOWER(tags) LIKE :tags
@@ -68,7 +68,7 @@ class RecipeRepository extends Repository
 
     public function addRecipe(Recipe $recipe): void
     {
-        $stmt = $this->database->connect()->prepare('
+        $stmt = $this->connection->prepare('
             INSERT INTO recipes (title, tags, ingredients, proportions, directions, image, created_at, user_id)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ');
