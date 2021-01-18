@@ -48,14 +48,19 @@ class RecipeRepository extends Repository
         return $average_recipe_rating;
     }
 
-    public function getSearchedRecipes(string $searchString)
+    public function getSearchedRecipes(string $ingredients, string $tags)
     {
-        $searchString = strtolower($searchString);
+        $ingredients = strtolower($ingredients);
+        $tags = strtolower($tags);
+
         $stmt = $this->database->connect()->prepare('
             SELECT r.id, title, ingredients, image, created_at, u.username, getAverageRating(r.id)
-            FROM recipes r JOIN users u ON r.user_id=u.id WHERE LOWER(ingredients) LIKE :search ORDER BY r.id DESC
+            FROM recipes r JOIN users u ON r.user_id=u.id 
+            WHERE LOWER(ingredients) LIKE :ingredients AND LOWER(tags) LIKE :tags
+            ORDER BY r.id DESC
         ');
-        $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
+        $stmt->bindParam(':ingredients', $ingredients, PDO::PARAM_STR);
+        $stmt->bindParam(':tags', $tags, PDO::PARAM_STR);
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

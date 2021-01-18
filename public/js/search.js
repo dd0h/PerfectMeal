@@ -1,22 +1,36 @@
-const search = document.querySelector('input[placeholder="search ingredients"]');
+const search = document.querySelector('input[placeholder="add ingredients"]');
 const recipesContainer = document.querySelector(".recipes-wrapper");
 const ingredientsWrapper = document.querySelector(".ingredients-wrapper");
+const tagsWrapper = document.querySelector(".tags-wrapper");
+const options = document.getElementsByClassName("option");
 
+prepareTags();
+prepareSearch();
+fetchRecipes();
 
-fetchRecipes({search: '%'});
+function prepareTags() {
+    for(let i = 0; i < options.length; i++)
+        options[i].onclick = function(){
+            addTag(options[i].innerHTML);
+        };
+}
 
-search.addEventListener("keyup", function (event) {
-    if (event.key === "Enter") {
-        addIngredient(this.value);
-        fetchRecipes();
-        search.value = '';
-    }
-});
+function prepareSearch(){
+    search.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            addIngredient(this.value);
+            search.value = '';
+        }
+    });
+}
 
 function fetchRecipes(){
     let ingredients = getIngredients();
-    //let tags = getTags(); TODO include tags to searching
-    const data = {search: ingredients};
+    let tags = getTags();
+    const data = {
+        ingredients: ingredients,
+        tags: tags
+    };
 
     fetch("/searchRecipe", {
         method: "POST",
@@ -42,9 +56,28 @@ function getIngredients() {
 }
 
 function addIngredient(name) {
-    if(!document.getElementsByName(name).length)
+    if(!document.getElementsByName(name).length){
         ingredientsWrapper.innerHTML += '<div class="ingredient" name="' + name + '">' +
             '<i onclick="removeParent(this)" class="fas fa-times-circle"></i>' + name + '</div>';
+        fetchRecipes();
+    }
+}
+
+function getTags() {
+    let tagElements = document.getElementsByClassName("tag");
+    let tags = '';
+    for(let i = 0; i < tagElements.length; i++){
+        tags += tagElements[i].getAttribute("name") + "%";
+    }
+    return '%' + tags;
+}
+
+function addTag(name) {
+    if(!document.getElementsByName(name).length){
+        tagsWrapper.innerHTML += '<div class="tag" name="' + name + '">' +
+            '<i onclick="removeParent(this)" class="fas fa-times-circle"></i>' + name + '</div>';
+        fetchRecipes();
+    }
 }
 
 function removeParent(element) {
@@ -78,7 +111,7 @@ function createRecipe(recipe) {
     title.innerHTML = recipe.title;
 
     const ingredients = clone.querySelector(".needed-ingredients");
-    ingredients.innerHTML = `You also need: ` + recipe.ingredients;
+    ingredients.innerHTML = `Needed ingredients: ` + recipe.ingredients;
 
     const author = clone.querySelector(".author");
     author.innerHTML = `Added by: ` + recipe.username;

@@ -18,7 +18,7 @@
                     <button>Typing</button>
                     <button>Categories</button>
                 </div>
-                <input placeholder="search ingredients" type="text"/>
+                <input placeholder="add ingredients" type="text"/>
                 <div class="ingredients-wrapper">
 
                 </div>
@@ -27,14 +27,33 @@
             <div class="recipes-container">
                 <div class="heading">Recipes</div>
                 <div class="menu">
-                    <button>Cuisine</button>
-                    <button>Diet</button>
-                    <button>Meal type</button>
+                    <div class="dropdown">
+                        <button>Cuisine</button>
+                        <div class="dropdown-content">
+                            <div class="option">Italian</div>
+                            <div class="option">Polish</div>
+                            <div class="option">Thai</div>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button>Diet</button>
+                        <div class="dropdown-content">
+                            <div class="option">Vegan</div>
+                            <div class="option">Vegetarian</div>
+                            <div class="option">Pig</div>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button>Meal type</button>
+                        <div class="dropdown-content">
+                            <div class="option">Breakfast</div>
+                            <div class="option">Dinner</div>
+                            <div class="option">Supper</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tags-container">
-                    <div class="tag"><i class="fas fa-times-circle"></i>lactose free</div>
-                    <div class="tag"><i class="fas fa-times-circle"></i>vegan</div>
-                    <div class="tag"><i class="fas fa-times-circle"></i>italian</div>
+                <div class="tags-wrapper">
+
                 </div>
                 <div class="recipes-wrapper">
 

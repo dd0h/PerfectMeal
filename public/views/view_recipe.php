@@ -24,7 +24,7 @@
                     </div>
                     <div class="tags">
                         <p>Tags</p>
-                        <div class="tags-container">
+                        <div class="tags-wrapper">
                             <?php foreach($models['recipe']->getTags() as $tag)
                                 echo "<div class='tag'></i>$tag</div>"; ?>
                         </div>

@@ -36,7 +36,10 @@ class RecipeController extends AppController {
             header('Content-type: application/json');
             http_response_code(200);
 
-            echo json_encode($this->recipeRepository->getSearchedRecipes($decoded['search']));
+            echo json_encode($this->recipeRepository->getSearchedRecipes(
+                $decoded['ingredients'],
+                $decoded['tags']
+            ));
         }
     }
 
@@ -70,7 +73,9 @@ class RecipeController extends AppController {
             $this->models['author']->getUsername()
         );
 
+
         $this->messages['average_rating'] = $this->recipeRepository->getAverageRecipeRating($id);
+
 
         return $this->render('view_recipe', ['models' => $this->models, 'messages' => $this->messages]);
     }
