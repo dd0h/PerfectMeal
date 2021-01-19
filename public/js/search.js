@@ -2,26 +2,83 @@ const search = document.querySelector('input[placeholder="add ingredients"]');
 const recipesContainer = document.querySelector(".recipes-wrapper");
 const ingredientsWrapper = document.querySelector(".ingredients-wrapper");
 const tagsWrapper = document.querySelector(".tags-wrapper");
-const options = document.getElementsByClassName("option");
+const options = document.querySelectorAll(".option");
+const inputDropdownContent = document.querySelector('.dropdown-content');
 
+
+downloadSuggestions();
 prepareTags();
-prepareSearch();
 fetchRecipes();
 
 function prepareTags() {
-    for(let i = 0; i < options.length; i++)
-        options[i].onclick = function(){
-            addTag(options[i].innerHTML);
-        };
+    options.forEach(option => option.addEventListener("click", function (){
+        addTag(option.innerHTML);
+        fetchRecipes();
+    }));
 }
 
-function prepareSearch(){
+function addTag(name) {
+    if(!document.getElementsByName(name).length){
+        tagsWrapper.innerHTML += '<div class="tag" name="' + name + '">' +
+            '<i onclick="removeParent(this)" class="fas fa-times-circle"></i>' + name + '</div>';
+    }
+}
+
+function downloadSuggestions() {
+    fetch("/searchRecipe", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }).then(function (response) {
+        return response.json();
+    }).then(function (suggestions){
+        prepareSearch(suggestions);
+    });
+}
+
+function prepareSearch(suggestions){
     search.addEventListener("keyup", function (event) {
-        if (event.key === "Enter") {
-            addIngredient(this.value);
+        inputDropdownContent.innerHTML = " ";
+        if (event.key === "Enter" && search.value) {
+            addIngredient(search.value);
             search.value = '';
         }
+        if(search.value) loadSuggestions(search.value, suggestions);
     });
+}
+
+function loadSuggestions(input, suggestions) {
+    suggestions.forEach(suggestion => {
+        if(suggestion.startsWith(input)) addSuggestion(suggestion);
+    });
+    establishSuggestionsBehaviour();
+}
+
+function addSuggestion(name) {
+    inputDropdownContent.innerHTML += '<div class="option" name="' + name + '">' + name + '</div>';
+}
+
+function establishSuggestionsBehaviour() {
+    document.querySelectorAll(".input-dropdown > .dropdown-content > .option")
+        .forEach(child => child.addEventListener("click", function () {
+            inputDropdownContent.innerHTML = " ";
+            search.value = '';
+            addIngredient(child.getAttribute("name"));
+        }))
+}
+
+function addIngredient(name) {
+    if(!document.getElementsByName(name).length){
+        ingredientsWrapper.innerHTML += '<div class="ingredient" name="' + name + '">' +
+            '<i onclick="removeParent(this)" class="fas fa-times-circle"></i>' + name + '</div>';
+        fetchRecipes();
+    }
+}
+
+function removeParent(element) {
+    element.parentNode.remove(element);
+    fetchRecipes();
 }
 
 function fetchRecipes(){
@@ -55,14 +112,6 @@ function getIngredients() {
     return '%' + ingredients;
 }
 
-function addIngredient(name) {
-    if(!document.getElementsByName(name).length){
-        ingredientsWrapper.innerHTML += '<div class="ingredient" name="' + name + '">' +
-            '<i onclick="removeParent(this)" class="fas fa-times-circle"></i>' + name + '</div>';
-        fetchRecipes();
-    }
-}
-
 function getTags() {
     let tagElements = document.getElementsByClassName("tag");
     let tags = '';
@@ -70,19 +119,6 @@ function getTags() {
         tags += tagElements[i].getAttribute("name") + "%";
     }
     return '%' + tags;
-}
-
-function addTag(name) {
-    if(!document.getElementsByName(name).length){
-        tagsWrapper.innerHTML += '<div class="tag" name="' + name + '">' +
-            '<i onclick="removeParent(this)" class="fas fa-times-circle"></i>' + name + '</div>';
-        fetchRecipes();
-    }
-}
-
-function removeParent(element) {
-    element.parentNode.remove(element);
-    fetchRecipes();
 }
 
 function loadRecipes(recipes) {

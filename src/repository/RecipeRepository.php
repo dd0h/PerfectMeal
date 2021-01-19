@@ -34,6 +34,19 @@ class RecipeRepository extends Repository
         );
     }
 
+    public function getIngredientsAsSuggestions(){
+        $stmt = $this->connection->prepare('
+            SELECT ingredients FROM public.recipes
+        ');
+        $stmt->execute();
+
+        $ingredientLists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $suggestions = $this->extractSuggestions($ingredientLists);
+
+        return $suggestions;
+    }
+
     public function getAverageRecipeRating($recipe_id): ?float
     {
         $stmt = $this->connection->prepare('
@@ -83,5 +96,18 @@ class RecipeRepository extends Repository
             $recipe->getCreatedAt(),
             $recipe->getUserId(),
         ]);
+    }
+
+    private function extractSuggestions($ingredientLists){
+        $suggestions = [];
+        foreach($ingredientLists as $ingredientList){
+            $ingredients = explode(", ", $ingredientList['ingredients']);
+            foreach($ingredients as $ingredient){
+                $ingredient = strtolower($ingredient);
+                if(!in_array($ingredient, $suggestions))
+                    $suggestions[] = $ingredient;
+            }
+        }
+        return $suggestions;
     }
 }

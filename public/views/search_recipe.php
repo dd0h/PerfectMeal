@@ -19,6 +19,11 @@
                     <button>Categories</button>
                 </div>
                 <input placeholder="add ingredients" type="text"/>
+                <div class="input-dropdown">
+                    <div class="dropdown-content">
+
+                    </div>
+                </div>
                 <div class="ingredients-wrapper">
 
                 </div>

@@ -65,17 +65,21 @@ body{
     margin: 1vh 0.2vw 1vh 0.2vw;
 }
 
-.dropdown {
+.dropdown, .input-dropdown {
     position: relative;
     display: inline-block;
 }
 
-.dropdown-content {
+.dropdown-content{
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 100%;
     box-shadow: 0.2vh 0.2vw 1vh 0 rgba(0,0,0,0.2);
+}
+
+.input-dropdown > .dropdown-content{
+    display: block;
 }
 
 .dropdown-content .option {

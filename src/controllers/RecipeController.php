@@ -36,10 +36,11 @@ class RecipeController extends AppController {
             header('Content-type: application/json');
             http_response_code(200);
 
-            echo json_encode($this->recipeRepository->getSearchedRecipes(
+            if($decoded['ingredients']) echo json_encode($this->recipeRepository->getSearchedRecipes(
                 $decoded['ingredients'],
                 $decoded['tags']
             ));
+            else echo json_encode($this->recipeRepository->getIngredientsAsSuggestions());
         }
     }
 
