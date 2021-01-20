@@ -52,7 +52,7 @@ body{
     border-radius: 3px;
 }
 
-.menu > button, .menu > .dropdown > button{
+.menu > .dropdown > button{
     background: #BD7676 0% 0% no-repeat padding-box;
     border: 3px solid #BD7676;
     border-radius: 3px;
@@ -227,6 +227,7 @@ textarea, input, label{
     padding: 1vh;
     border: 2px solid #BD7676;
     margin: 1vh 0 1vh 0;
+    width: 90%;
 
     font: normal normal normal 1em Arial;
     color: #BD7676;

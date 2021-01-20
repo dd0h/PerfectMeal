@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="public/css/upper_bar_styles.css">
     <script src="https://kit.fontawesome.com/46e60e2318.js" crossorigin="anonymous"></script>
     <script defer src="public/js/stars.js"></script>
-    <title>Chilli con carne with garlic sauce</title>
+    <title><?php echo $models['recipe']->getTitle(); ?></title>
 </head>
 <body>
     <div class="container">
@@ -31,11 +31,11 @@
                     </div>
                     <div class="recipe">
                         <p>Ingredients proportions</p>
-                        <text style="white-space: pre-line"><?php echo $models['recipe']->getProportions(); ?></text>
+                        <text><?php echo $models['recipe']->getProportions(); ?></text>
                     </div>
                     <div class="directions">
                         <p>Directions</p>
-                        <?php echo $models['recipe']->getDirections(); ?>
+                        <text><?php echo $models['recipe']->getDirections(); ?></text>
                     </div>
                     <div class="author">
                         <p>Author: <?php echo $models['author']->getUsername(); ?></p>

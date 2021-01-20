@@ -15,10 +15,8 @@
             <div class="ingredients-container">
                 <div class="heading">Your ingredients</div>
                 <div class="menu">
-                    <button>Typing</button>
-                    <button>Categories</button>
+                    <input placeholder="add ingredients" type="text"/>
                 </div>
-                <input placeholder="add ingredients" type="text"/>
                 <div class="input-dropdown">
                     <div class="dropdown-content">
 
@@ -35,9 +33,11 @@
                     <div class="dropdown">
                         <button>Cuisine</button>
                         <div class="dropdown-content">
+                            <div class="option">Asian</div>
+                            <div class="option">Chinese</div>
+                            <div class="option">Indian</div>
                             <div class="option">Italian</div>
                             <div class="option">Polish</div>
-                            <div class="option">Thai</div>
                         </div>
                     </div>
                     <div class="dropdown">
@@ -45,15 +45,20 @@
                         <div class="dropdown-content">
                             <div class="option">Vegan</div>
                             <div class="option">Vegetarian</div>
-                            <div class="option">Pig</div>
+                            <div class="option">Pescatarian</div>
+                            <div class="option">Gluten free</div>
+                            <div class="option">Lactose free</div>
                         </div>
                     </div>
                     <div class="dropdown">
                         <button>Meal type</button>
                         <div class="dropdown-content">
                             <div class="option">Breakfast</div>
+                            <div class="option">Dessert</div>
                             <div class="option">Dinner</div>
+                            <div class="option">Salads</div>
                             <div class="option">Supper</div>
+                            <div class="option">Quick & easy</div>
                         </div>
                     </div>
                 </div>

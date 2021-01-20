@@ -75,7 +75,7 @@ class RecipeController extends AppController {
         );
 
 
-        $this->messages['average_rating'] = $this->recipeRepository->getAverageRecipeRating($id);
+        $this->messages['average_rating'] = round($this->recipeRepository->getAverageRecipeRating($id), 2);
 
 
         return $this->render('view_recipe', ['models' => $this->models, 'messages' => $this->messages]);

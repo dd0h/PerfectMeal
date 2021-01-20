@@ -9,7 +9,7 @@ class UserRepository extends Repository
     public function getUserByUsernameOrEmail(string $login): ?User
     {
         $stmt = $this->connection->prepare('
-            SELECT * FROM public.users WHERE email = :login or username = :login
+            SELECT * FROM public.users WHERE LOWER(email) = LOWER(:login) or LOWER(username) = LOWER(:login)
         ');
         $stmt->bindParam(':login', $login, PDO::PARAM_STR);
         $stmt->execute();

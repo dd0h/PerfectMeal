@@ -218,3 +218,7 @@ input[type="checkbox"] {
 .average{
     margin-top: 2vh;
 }
+
+text{
+    white-space: pre-line;
+}
