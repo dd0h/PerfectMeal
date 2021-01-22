@@ -22,9 +22,24 @@ class RatingController extends AppController {
         $this->recipeRepository = new RecipeRepository();
     }
 
-    public function rateRecipe(){
+    public function viewRecipe(){
+        if(isset($_GET['delete_rating_id']) and isset($_GET['recipe_id']))
+            $this->deleteRating((int)$_GET['delete_rating_id']);
 
-        $recipe_id = (int)$_GET['id'];
+        elseif(isset($_GET['recipe_id']))
+            $this->rateRecipe((int)$_GET['recipe_id']);
+
+        if(isset($_GET['recipe_id']))
+            $this->headTo("viewRecipe?id={$_GET['recipe_id']}");
+        else
+            return $this->render("searchRecipe", ['messages' => $this->message]);
+    }
+
+    private function deleteRating($rating_id){
+        $this->ratingRepository->deleteRating($rating_id);
+    }
+
+    private function rateRecipe($recipe_id){
 
         if($_POST['rate']==null){
             return $this->render("searchRecipe", ['messages' => $this->message]);
@@ -43,7 +58,5 @@ class RatingController extends AppController {
         );
 
         $this->ratingRepository->addRating($rating);
-
-        $this->headTo("viewRecipe?id={$recipe_id}");
     }
 }

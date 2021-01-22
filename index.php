@@ -21,7 +21,7 @@ Router::route('addRecipe', 'RecipeController', 'addRecipe', 'POST');
 Router::route('viewRecipe', 'RecipeController', 'viewRecipe', 'GET');
 Router::route('searchRecipe', 'RecipeController', 'searchRecipes', 'POST');
 
-Router::route('viewRecipe', 'RatingController', 'rateRecipe', 'POST');
+Router::route('viewRecipe', 'RatingController', 'viewRecipe', 'POST');
 
 
 

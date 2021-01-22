@@ -164,6 +164,13 @@ input[type="checkbox"] {
     visibility: hidden;
 }
 
+.comment > .comment-info > form > button{
+    background: rgba(242,152,152, 1) 0% 0% no-repeat padding-box;
+    color: white;
+    border: none;
+    margin-left: auto;
+}
+
 .comment{
     text-align: left;
     background: rgba(242,152,152, 1) 0% 0% no-repeat padding-box;

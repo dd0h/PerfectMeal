@@ -1,6 +1,6 @@
 <div class="rate">
     Rate the recipe and leave comment (optional):
-    <form name="rating-form" action="viewRecipe?id=<?php echo $models['recipe']->getId(); ?>" method="POST">
+    <form name="rating-form" action="viewRecipe?recipe_id=<?php echo $models['recipe']->getId(); ?>" method="POST">
         <div class="stars">
             <i name="star" id="1" class="fas fa-star"></i>
             <i name="star" id="2" class="fas fa-star"></i>

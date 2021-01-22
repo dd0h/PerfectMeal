@@ -80,7 +80,7 @@ class SecurityController extends AppController {
             return $this->render('register', ['messages' => ['You have to accept PerfectMeal site rules!']]);
         }
 
-        $user = new User(null, $username, $email, password_hash($password, PASSWORD_BCRYPT));
+        $user = new User(null, $username, $email, password_hash($password, PASSWORD_BCRYPT), 'USER');
 
         $this->userRepository->addUser($user);
 

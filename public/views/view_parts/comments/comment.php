@@ -9,6 +9,7 @@
                     }
             ?>
         </div>
+        <?php if($messages['user_type']=='MODERATOR') include('rating/delete_rating.php'); ?>
         <div class="comment-date">posted <?php echo $rating->getRatedOn(); ?></div>
     </div>
     <div class="comment-content">

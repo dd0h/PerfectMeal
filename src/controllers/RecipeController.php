@@ -111,15 +111,19 @@ class RecipeController extends AppController {
     }
 
     private function setUserType($rating_authors, $recipe_owner){
-        $logged_user = AuthenticationGuard::getAuthenticatedUsername();
+        $logged_username = AuthenticationGuard::getAuthenticatedUsername();
 
-        if($logged_user == null) return 'guest';
+        if(!$logged_username) return 'guest';
 
-        if($logged_user == $recipe_owner) return 'recipe_owner';
+        $logged_user_role = $this->userRepository->getUserByUsernameOrEmail($logged_username)->getRole();
+
+        if($logged_user_role == 'MODERATOR') return $logged_user_role;
+
+        if($logged_username == $recipe_owner) return 'recipe_owner';
 
         if($rating_authors)
             foreach($rating_authors as $rating_author){
-                if($rating_author->getUsername() == $logged_user) {
+                if($rating_author->getUsername() == $logged_username) {
                     return 'already_rated';
                 }
             }

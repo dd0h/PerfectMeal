@@ -22,6 +22,14 @@ class RatingRepository extends Repository
         ]);
     }
 
+    public function deleteRating($rating_id){
+        $stmt = $this->connection->prepare('
+            DELETE FROM public.ratings WHERE ratings.id = :rating_id
+        ');
+        $stmt->bindParam(':rating_id', $rating_id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
     public function getRatingsByRecipeId(int $recipe_id): ?array
     {
         $stmt = $this->connection->prepare('
