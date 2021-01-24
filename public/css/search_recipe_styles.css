@@ -3,7 +3,7 @@ body{
 }
 
 .container{
-    width: 100vw;
+    max-width: 100vw;
     min-height: 100vh;
     background: transparent linear-gradient(180deg, #F29898 0%, #FFE4E4 100%, #F29898 100%) 0% 0% no-repeat padding-box;
 }
@@ -13,8 +13,6 @@ body{
 
     display: flex;
     flex-direction: row;
-    /*align-items: center;*/
-    /*justify-content: center;*/
     min-height: 60vh;
 }
 
@@ -27,7 +25,6 @@ body{
 
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
 
     margin: 0 2% 0 0;
 }
@@ -36,6 +33,10 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.ingredients-container > .menu > input{
+    width: 80%;
 }
 
 .heading{
@@ -58,7 +59,7 @@ body{
     border-radius: 3px;
 
     text-align: center;
-    font: normal normal normal 1vw Montserrat;
+    font: normal normal normal 1em Montserrat;
     color: #FFFFFF;
 
     padding: 1vh 2vw 1vh 2vw;
@@ -85,7 +86,7 @@ body{
 .dropdown-content .option {
     background: #FFFFFF 0% 0% no-repeat padding-box;
     padding: 1vh 1vw 1vh 1vw;
-    font: normal normal normal 0.8vw Montserrat;
+    font: normal normal normal 0.8em Montserrat;
     color: #F29898;
 }
 
@@ -98,7 +99,7 @@ body{
     border: 3px solid #BD7676;
 
     text-align: center;
-    font: normal normal normal 1vw Montserrat;
+    font: normal normal normal 1em Montserrat;
     color: #BD7676;
 }
 
@@ -115,12 +116,11 @@ body{
     border-radius: 6px;
 
     text-align: center;
-    font: normal normal normal 0.8vw Montserrat;
+    font: normal normal normal 0.8em Montserrat;
     color: #FFFFFF;
 
     padding: 1vh 0.5vw 1vh 0.5vw;
     margin: 0.5vh 0.5vw 0.5vh 0;
-    /*flex-basis: 100%;*/
 }
 
 .tag > i, .ingredient > i{
@@ -135,7 +135,6 @@ body{
 
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
 }
 
 .recipes-container > .menu{
@@ -210,17 +209,17 @@ body{
 }
 
 .recipe-name{
-    font: normal normal normal 1vw Montserrat;
+    font: normal normal normal 1em Montserrat;
     height: 20%;
 }
 
 .needed-ingredients{
-    font: normal normal normal 0.8vw Montserrat;
+    font: normal normal normal 0.8em Montserrat;
     height: 80%;
 }
 
 .author{
-    font: normal normal normal 0.6vw Montserrat;
+    font: normal normal normal 0.6em Montserrat;
 }
 
 textarea, input, label{
@@ -236,4 +235,155 @@ textarea, input, label{
 a{
     color: #FFFFFF;
     text-decoration: none;
+}
+
+@media only screen and (max-width: 768px){
+    .ingredients-container{
+        width: 22%;
+        border-radius: 2px;
+    }
+
+    .heading{
+        font: normal normal normal 1.2em Montserrat;
+    }
+
+    .menu{
+        border-radius: 2px;
+    }
+
+    .menu > .dropdown > button{
+        border-radius: 2px;
+        font: normal normal normal 0.8em Montserrat;
+    }
+
+    .dropdown-content .option {
+        font: normal normal normal 0.6em Montserrat;
+    }
+
+    .dropdown:hover button {
+        border: 2px solid #BD7676;
+        font: normal normal normal 0.8em Montserrat;
+    }
+
+    .tag, .ingredient{
+        border-radius: 3px;
+        font: normal normal normal 0.6em Montserrat;
+    }
+
+    .recipes-container{
+        border-radius: 2px;
+    }
+
+    .recipes-container > .tags-wrapper{
+        border-radius: 3px;
+    }
+
+    .recipes-wrapper{
+        border-radius: 3px;
+    }
+    .recipes-wrapper > a{
+        width: 45%;
+    }
+    .recipe-frame{
+        border-radius: 3px;
+    }
+
+    .recipe-name{
+        font: normal normal normal 0.8em Montserrat;
+        height: 20%;
+    }
+
+    .needed-ingredients{
+        font: normal normal normal 0.6em Montserrat;
+        height: 80%;
+    }
+
+    .author{
+        font: normal normal normal 0.5em Montserrat;
+    }
+
+    textarea, input, label{
+        font: normal normal normal 1em Arial;
+    }
+
+    .recipes-container{
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 440px){
+    .heading{
+        font: normal normal normal 0.8em Montserrat;
+    }
+
+    .ingredients-container{
+        width: 22%;
+        border-radius: 2px;
+    }
+    .recipes-container{
+        width: 68%;
+    }
+    .recipes-wrapper > a{
+        width: 100%;
+    }
+
+    .menu{
+        border-radius: 1px;
+    }
+
+    .menu > .dropdown > button{
+        border-radius: 2px;
+        font: normal normal normal 0.6em Montserrat;
+    }
+
+    .dropdown-content .option {
+        font: normal normal normal 0.5em Montserrat;
+    }
+
+    .dropdown:hover button {
+        border: 2px solid #BD7676;
+        font: normal normal normal 0.6em Montserrat;
+    }
+
+    .tag, .ingredient{
+        border-radius: 3px;
+        font: normal normal normal 0.5em Montserrat;
+    }
+
+    .recipes-container{
+        border-radius: 1px;
+    }
+
+    .recipes-container > .tags-wrapper{
+        border-radius: 2px;
+    }
+
+    .recipes-wrapper{
+        border-radius: 2px;
+    }
+    .recipe-frame{
+        border-radius: 2px;
+    }
+
+    .recipe-name{
+        font: normal normal normal 0.7em Montserrat;
+        height: 20%;
+    }
+
+    .needed-ingredients{
+        font: normal normal normal 0.5em Montserrat;
+        height: 80%;
+    }
+
+    .author{
+        font: normal normal normal 0.4em Montserrat;
+    }
+
+    textarea, input, label{
+        font: normal normal normal 0.8em Arial;
+    }
+
+    .recipe-frame{
+        width: 95%;
+    }
 }

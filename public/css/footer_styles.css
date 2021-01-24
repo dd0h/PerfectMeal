@@ -1,10 +1,21 @@
+.container{
+    position: relative;
+}
+
+.content{
+    padding-bottom: 20vh;
+    margin-bottom: 0;
+}
+
 .footer{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    margin-top: 15vh;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     padding-bottom: 2vh;
 }
 
@@ -21,4 +32,18 @@
     font: normal normal normal 1em Montserrat;
     color: #FFFFFF;
     border-top: 0.1em solid #FFFFFF;
+}
+
+@media only screen and (max-width: 768px) {
+    .footer{
+        margin-top: 0;
+        position:absolute;
+        bottom:0;
+        width: 100%;
+        padding-bottom: 2vh;
+    }
+
+    .footer > .copyright{
+        font: normal normal normal 0.7em Montserrat;
+    }
 }
