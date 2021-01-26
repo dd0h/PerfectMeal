@@ -3,6 +3,8 @@
 require_once 'AppController.php';
 require_once __DIR__ .'/../models/Recipe.php';
 require_once __DIR__.'/../repository/RecipeRepository.php';
+require_once __DIR__.'/../exceptions/UserNotFoundException.php';
+require_once __DIR__.'/../exceptions/FileNotFoundException.php';
 
 class RecipeController extends AppController {
 
@@ -50,6 +52,13 @@ class RecipeController extends AppController {
 
         $id = (int)$_GET['id'];
         $recipe = $this->recipeRepository->getRecipe($id);
+        try{
+            if(!$recipe) throw new FileNotFoundException();
+        }
+        catch (Exception $e){
+            echo $e->errorMessage();
+            exit;
+        }
 
         $tags = $recipe->getTags();
         $ingredients = $recipe->getIngredients();
@@ -61,12 +70,26 @@ class RecipeController extends AppController {
 
         $author_id = $recipe->getUserId();
         $this->models['author'] = $this->userRepository->getUserById($author_id);
+        try{
+            if(!$this->models['author']) throw new UserNotFoundException();
+        }
+        catch (Exception $e){
+            echo $e->errorMessage();
+            exit;
+        }
 
         $ratings = $this->ratingRepository->getRatingsByRecipeId($id);
         $this->models['ratings'] = $ratings;
 
         foreach($this->models['ratings'] as $rating){
-            $this->models['rating_authors'][] = $this->userRepository->getUserById($rating->getUserId());
+            $rating_author = $this->userRepository->getUserById($rating->getUserId());
+            try{
+                if(!$rating_author) throw new UserNotFoundException();
+            }
+            catch (Exception $e){
+                echo $e->errorMessage();
+            }
+            $this->models['rating_authors'][] = $rating_author;
         }
 
         $this->messages['user_type'] = $this->setUserType(
@@ -93,6 +116,14 @@ class RecipeController extends AppController {
 
             $user = $this->userRepository->getUserByUsernameOrEmail(AuthenticationGuard::getAuthenticatedUsername());
 
+            try{
+                if(!$user) throw new UserNotFoundException();
+            }
+            catch (Exception $e){
+                echo $e->errorMessage();
+                exit;
+            }
+
             $recipe = new Recipe(null,
                 $_POST['title'],
                 $_POST['tags'],
@@ -115,7 +146,17 @@ class RecipeController extends AppController {
 
         if(!$logged_username) return 'guest';
 
-        $logged_user_role = $this->userRepository->getUserByUsernameOrEmail($logged_username)->getRole();
+        $user = $this->userRepository->getUserByUsernameOrEmail($logged_username);
+
+        try{
+            if(!$user) throw new UserNotFoundException();
+        }
+        catch (Exception $e){
+            echo $e->errorMessage();
+            exit;
+        }
+
+        $logged_user_role = $user->getRole();
 
         if($logged_user_role == 'MODERATOR') return $logged_user_role;
 

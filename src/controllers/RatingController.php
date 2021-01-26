@@ -5,6 +5,7 @@ require_once __DIR__ .'/../models/Recipe.php';
 require_once __DIR__ .'/../models/Rating.php';
 require_once __DIR__.'/../repository/RecipeRepository.php';
 require_once __DIR__.'/../repository/RatingRepository.php';
+require_once __DIR__.'/../exceptions/UserNotFoundException.php';
 
 class RatingController extends AppController {
 
@@ -46,7 +47,17 @@ class RatingController extends AppController {
         }
 
         $username = AuthenticationGuard::getAuthenticatedUsername();
-        $user_id = $this->userRepository->getUserByUsernameOrEmail($username)->getId();
+        $user = $this->userRepository->getUserByUsernameOrEmail($username);
+
+        try{
+            if(!$user) throw new UserNotFoundException();
+        }
+        catch (Exception $e){
+            echo $e->errorMessage();
+            exit;
+        }
+
+        $user_id = $user->getId();
 
         $rating = new Rating(
             null,
